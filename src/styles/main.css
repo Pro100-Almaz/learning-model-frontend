@@ -1,0 +1,75 @@
+@import 'tailwindcss';
+
+@import '@fontsource/unbounded/400.css';
+@import '@fontsource/unbounded/600.css';
+@import '@fontsource/unbounded/700.css';
+@import '@fontsource/onest/400.css';
+@import '@fontsource/onest/500.css';
+@import '@fontsource/onest/600.css';
+@import '@fontsource/onest/700.css';
+
+@theme {
+  --color-ink: #161427;
+  --color-brand: #6d4aff;
+  --color-brand-press: #5a3ae0;
+  --color-ascent: #ff8a3d;
+  --color-success: #12b886;
+  --color-danger: #f03e5e;
+  --color-surface: #f6f6fb;
+  --color-card: #ffffff;
+  --color-muted: #6e6b85;
+  --color-hairline: #e8e7f0;
+
+  --font-display: 'Unbounded', system-ui, -apple-system, sans-serif;
+  --font-body: 'Onest', 'Inter', system-ui, -apple-system, sans-serif;
+  --default-font-family: var(--font-body);
+
+  --radius-card: 16px;
+  --radius-button: 12px;
+
+  --shadow-card: 0 2px 12px rgb(22 20 39 / 0.06);
+  --shadow-elevated: 0 8px 24px rgb(22 20 39 / 0.1);
+
+  --spacing-safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-feature-settings: 'cv11', 'ss01';
+    min-height: 100dvh;
+  }
+
+  /* numerals must not jitter in scores / XP animations */
+  .tabular-nums,
+  [data-tabular] {
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* respect reduced motion globally */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* focus visible — never rely on color alone */
+  :focus-visible {
+    outline: 2px solid var(--color-brand);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}

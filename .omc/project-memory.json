@@ -1,0 +1,287 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1782142576578,
+  "projectRoot": "/Users/almazamanzholuly/Documents/qadam/learning-model-frontend",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {},
+  "hotPaths": [
+    {
+      "path": "package.json",
+      "accessCount": 3,
+      "lastAccessed": 1782145085456,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/lib/api/index.ts",
+      "accessCount": 2,
+      "lastAccessed": 1782144444829,
+      "type": "file"
+    },
+    {
+      "path": "vite.config.ts",
+      "accessCount": 2,
+      "lastAccessed": 1782145051680,
+      "type": "file"
+    },
+    {
+      "path": "tsconfig.node.json",
+      "accessCount": 2,
+      "lastAccessed": 1782145083449,
+      "type": "file"
+    },
+    {
+      "path": "tsconfig.json",
+      "accessCount": 1,
+      "lastAccessed": 1782143582102,
+      "type": "file"
+    },
+    {
+      "path": "tsconfig.app.json",
+      "accessCount": 1,
+      "lastAccessed": 1782143582289,
+      "type": "file"
+    },
+    {
+      "path": "vitest.config.ts",
+      "accessCount": 1,
+      "lastAccessed": 1782143582841,
+      "type": "file"
+    },
+    {
+      "path": "index.html",
+      "accessCount": 1,
+      "lastAccessed": 1782143583018,
+      "type": "file"
+    },
+    {
+      "path": "env.d.ts",
+      "accessCount": 1,
+      "lastAccessed": 1782143583377,
+      "type": "file"
+    },
+    {
+      "path": ".env.example",
+      "accessCount": 1,
+      "lastAccessed": 1782143583554,
+      "type": "file"
+    },
+    {
+      "path": "src/styles/main.css",
+      "accessCount": 1,
+      "lastAccessed": 1782143643711,
+      "type": "file"
+    },
+    {
+      "path": "src/main.ts",
+      "accessCount": 1,
+      "lastAccessed": 1782143646903,
+      "type": "file"
+    },
+    {
+      "path": "src/App.vue",
+      "accessCount": 1,
+      "lastAccessed": 1782143648294,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/lib/i18n/ru.ts",
+      "accessCount": 1,
+      "lastAccessed": 1782143667625,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/lib/i18n/index.ts",
+      "accessCount": 1,
+      "lastAccessed": 1782143675776,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/stores/auth.ts",
+      "accessCount": 1,
+      "lastAccessed": 1782143685807,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/stores/ui.ts",
+      "accessCount": 1,
+      "lastAccessed": 1782143689344,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/lib/api/client.ts",
+      "accessCount": 1,
+      "lastAccessed": 1782143698613,
+      "type": "file"
+    },
+    {
+      "path": "src/app/router.ts",
+      "accessCount": 1,
+      "lastAccessed": 1782143713610,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/components/AppShell.vue",
+      "accessCount": 1,
+      "lastAccessed": 1782143750513,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/components/BottomNav.vue",
+      "accessCount": 1,
+      "lastAccessed": 1782143763625,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/components/Sidebar.vue",
+      "accessCount": 1,
+      "lastAccessed": 1782143771676,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/components/Toaster.vue",
+      "accessCount": 1,
+      "lastAccessed": 1782143776229,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/components/TicketStub.vue",
+      "accessCount": 1,
+      "lastAccessed": 1782143781856,
+      "type": "file"
+    },
+    {
+      "path": "src/features/auth/LoginScreen.vue",
+      "accessCount": 1,
+      "lastAccessed": 1782143804554,
+      "type": "file"
+    },
+    {
+      "path": "src/features/onboarding/OnboardingScreen.vue",
+      "accessCount": 1,
+      "lastAccessed": 1782143811831,
+      "type": "file"
+    },
+    {
+      "path": "src/features/dashboard/DashboardScreen.vue",
+      "accessCount": 1,
+      "lastAccessed": 1782143817235,
+      "type": "file"
+    },
+    {
+      "path": "src/features/catalog/CatalogScreen.vue",
+      "accessCount": 1,
+      "lastAccessed": 1782143818722,
+      "type": "file"
+    },
+    {
+      "path": "src/features/catalog/ModuleScreen.vue",
+      "accessCount": 1,
+      "lastAccessed": 1782143820260,
+      "type": "file"
+    },
+    {
+      "path": "src/features/lesson/LessonScreen.vue",
+      "accessCount": 1,
+      "lastAccessed": 1782143822242,
+      "type": "file"
+    },
+    {
+      "path": "src/features/test/TestScreen.vue",
+      "accessCount": 1,
+      "lastAccessed": 1782143824267,
+      "type": "file"
+    },
+    {
+      "path": "src/features/test/MockScreen.vue",
+      "accessCount": 1,
+      "lastAccessed": 1782143825774,
+      "type": "file"
+    },
+    {
+      "path": "src/features/results/ResultsScreen.vue",
+      "accessCount": 1,
+      "lastAccessed": 1782143827772,
+      "type": "file"
+    },
+    {
+      "path": "src/features/analytics/AnalyticsScreen.vue",
+      "accessCount": 1,
+      "lastAccessed": 1782143829325,
+      "type": "file"
+    },
+    {
+      "path": "src/features/grant/GrantScreen.vue",
+      "accessCount": 1,
+      "lastAccessed": 1782143831378,
+      "type": "file"
+    },
+    {
+      "path": "src/features/profile/ProfileScreen.vue",
+      "accessCount": 1,
+      "lastAccessed": 1782143833235,
+      "type": "file"
+    },
+    {
+      "path": "eslint.config.js",
+      "accessCount": 1,
+      "lastAccessed": 1782144434714,
+      "type": "file"
+    },
+    {
+      "path": ".prettierrc.json",
+      "accessCount": 1,
+      "lastAccessed": 1782144434905,
+      "type": "file"
+    },
+    {
+      "path": ".prettierignore",
+      "accessCount": 1,
+      "lastAccessed": 1782144435102,
+      "type": "file"
+    },
+    {
+      "path": "src/test/setup.ts",
+      "accessCount": 1,
+      "lastAccessed": 1782144435282,
+      "type": "file"
+    },
+    {
+      "path": "README.md",
+      "accessCount": 1,
+      "lastAccessed": 1782144435651,
+      "type": "file"
+    },
+    {
+      "path": "public/favicon.svg",
+      "accessCount": 1,
+      "lastAccessed": 1782144435835,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

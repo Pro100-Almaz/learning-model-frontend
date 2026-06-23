@@ -1,0 +1,38 @@
+# deps
+node_modules
+.pnp
+.pnp.js
+
+# build / cache
+dist
+dist-ssr
+.vite
+.cache
+*.tsbuildinfo
+
+# env
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# editor / OS
+.DS_Store
+.idea
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp
+
+# generated
+src/shared/lib/api/schema.ts
+
+# tests
+coverage/

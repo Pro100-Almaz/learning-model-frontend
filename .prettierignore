@@ -1,0 +1,6 @@
+node_modules
+dist
+dev-dist
+coverage
+src/shared/lib/api/schema.ts
+*.md
