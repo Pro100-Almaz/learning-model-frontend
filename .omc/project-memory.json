@@ -31,9 +31,75 @@
   "directoryMap": {},
   "hotPaths": [
     {
+      "path": "src/shared/lib/i18n/ru.ts",
+      "accessCount": 14,
+      "lastAccessed": 1782290290695,
+      "type": "file"
+    },
+    {
+      "path": "src/features/catalog/CatalogScreen.vue",
+      "accessCount": 5,
+      "lastAccessed": 1782279827542,
+      "type": "file"
+    },
+    {
+      "path": "src/features/catalog/ModuleScreen.vue",
+      "accessCount": 4,
+      "lastAccessed": 1782223257723,
+      "type": "file"
+    },
+    {
+      "path": "src/features/lesson/LessonScreen.vue",
+      "accessCount": 4,
+      "lastAccessed": 1782223280952,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/components/VideoPlayer.vue",
+      "accessCount": 4,
+      "lastAccessed": 1782223291872,
+      "type": "file"
+    },
+    {
       "path": "package.json",
       "accessCount": 3,
       "lastAccessed": 1782145085456,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/components/LoadingSkeleton.vue",
+      "accessCount": 3,
+      "lastAccessed": 1782223303912,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/components/EmptyState.vue",
+      "accessCount": 3,
+      "lastAccessed": 1782223313833,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/components/ErrorState.vue",
+      "accessCount": 3,
+      "lastAccessed": 1782223327087,
+      "type": "file"
+    },
+    {
+      "path": "src/features/analytics/AnalyticsScreen.vue",
+      "accessCount": 3,
+      "lastAccessed": 1782282304739,
+      "type": "file"
+    },
+    {
+      "path": "src/features/onboarding/OnboardingScreen.vue",
+      "accessCount": 3,
+      "lastAccessed": 1782288582615,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/components/AppShell.vue",
+      "accessCount": 3,
+      "lastAccessed": 1782290312160,
       "type": "file"
     },
     {
@@ -52,6 +118,72 @@
       "path": "tsconfig.node.json",
       "accessCount": 2,
       "lastAccessed": 1782145083449,
+      "type": "file"
+    },
+    {
+      "path": "src/styles/main.css",
+      "accessCount": 2,
+      "lastAccessed": 1782223176019,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/lib/i18n/index.ts",
+      "accessCount": 2,
+      "lastAccessed": 1782223182411,
+      "type": "file"
+    },
+    {
+      "path": "src/test/setup.ts",
+      "accessCount": 2,
+      "lastAccessed": 1782223188970,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/components/Toaster.vue",
+      "accessCount": 2,
+      "lastAccessed": 1782278040797,
+      "type": "file"
+    },
+    {
+      "path": "src/features/test/TestScreen.vue",
+      "accessCount": 2,
+      "lastAccessed": 1782279168151,
+      "type": "file"
+    },
+    {
+      "path": "src/features/results/ResultsScreen.vue",
+      "accessCount": 2,
+      "lastAccessed": 1782279189048,
+      "type": "file"
+    },
+    {
+      "path": "src/features/profile/ProfileScreen.vue",
+      "accessCount": 2,
+      "lastAccessed": 1782279810332,
+      "type": "file"
+    },
+    {
+      "path": "src/features/grant/GrantScreen.vue",
+      "accessCount": 2,
+      "lastAccessed": 1782288583791,
+      "type": "file"
+    },
+    {
+      "path": "src/app/router.ts",
+      "accessCount": 2,
+      "lastAccessed": 1782290306309,
+      "type": "file"
+    },
+    {
+      "path": "src/features/dashboard/DashboardScreen.vue",
+      "accessCount": 2,
+      "lastAccessed": 1782291918310,
+      "type": "file"
+    },
+    {
+      "path": "src/features/test/MockScreen.vue",
+      "accessCount": 2,
+      "lastAccessed": 1782291959735,
       "type": "file"
     },
     {
@@ -91,12 +223,6 @@
       "type": "file"
     },
     {
-      "path": "src/styles/main.css",
-      "accessCount": 1,
-      "lastAccessed": 1782143643711,
-      "type": "file"
-    },
-    {
       "path": "src/main.ts",
       "accessCount": 1,
       "lastAccessed": 1782143646903,
@@ -106,18 +232,6 @@
       "path": "src/App.vue",
       "accessCount": 1,
       "lastAccessed": 1782143648294,
-      "type": "file"
-    },
-    {
-      "path": "src/shared/lib/i18n/ru.ts",
-      "accessCount": 1,
-      "lastAccessed": 1782143667625,
-      "type": "file"
-    },
-    {
-      "path": "src/shared/lib/i18n/index.ts",
-      "accessCount": 1,
-      "lastAccessed": 1782143675776,
       "type": "file"
     },
     {
@@ -139,18 +253,6 @@
       "type": "file"
     },
     {
-      "path": "src/app/router.ts",
-      "accessCount": 1,
-      "lastAccessed": 1782143713610,
-      "type": "file"
-    },
-    {
-      "path": "src/shared/components/AppShell.vue",
-      "accessCount": 1,
-      "lastAccessed": 1782143750513,
-      "type": "file"
-    },
-    {
       "path": "src/shared/components/BottomNav.vue",
       "accessCount": 1,
       "lastAccessed": 1782143763625,
@@ -163,12 +265,6 @@
       "type": "file"
     },
     {
-      "path": "src/shared/components/Toaster.vue",
-      "accessCount": 1,
-      "lastAccessed": 1782143776229,
-      "type": "file"
-    },
-    {
       "path": "src/shared/components/TicketStub.vue",
       "accessCount": 1,
       "lastAccessed": 1782143781856,
@@ -178,72 +274,6 @@
       "path": "src/features/auth/LoginScreen.vue",
       "accessCount": 1,
       "lastAccessed": 1782143804554,
-      "type": "file"
-    },
-    {
-      "path": "src/features/onboarding/OnboardingScreen.vue",
-      "accessCount": 1,
-      "lastAccessed": 1782143811831,
-      "type": "file"
-    },
-    {
-      "path": "src/features/dashboard/DashboardScreen.vue",
-      "accessCount": 1,
-      "lastAccessed": 1782143817235,
-      "type": "file"
-    },
-    {
-      "path": "src/features/catalog/CatalogScreen.vue",
-      "accessCount": 1,
-      "lastAccessed": 1782143818722,
-      "type": "file"
-    },
-    {
-      "path": "src/features/catalog/ModuleScreen.vue",
-      "accessCount": 1,
-      "lastAccessed": 1782143820260,
-      "type": "file"
-    },
-    {
-      "path": "src/features/lesson/LessonScreen.vue",
-      "accessCount": 1,
-      "lastAccessed": 1782143822242,
-      "type": "file"
-    },
-    {
-      "path": "src/features/test/TestScreen.vue",
-      "accessCount": 1,
-      "lastAccessed": 1782143824267,
-      "type": "file"
-    },
-    {
-      "path": "src/features/test/MockScreen.vue",
-      "accessCount": 1,
-      "lastAccessed": 1782143825774,
-      "type": "file"
-    },
-    {
-      "path": "src/features/results/ResultsScreen.vue",
-      "accessCount": 1,
-      "lastAccessed": 1782143827772,
-      "type": "file"
-    },
-    {
-      "path": "src/features/analytics/AnalyticsScreen.vue",
-      "accessCount": 1,
-      "lastAccessed": 1782143829325,
-      "type": "file"
-    },
-    {
-      "path": "src/features/grant/GrantScreen.vue",
-      "accessCount": 1,
-      "lastAccessed": 1782143831378,
-      "type": "file"
-    },
-    {
-      "path": "src/features/profile/ProfileScreen.vue",
-      "accessCount": 1,
-      "lastAccessed": 1782143833235,
       "type": "file"
     },
     {
@@ -265,12 +295,6 @@
       "type": "file"
     },
     {
-      "path": "src/test/setup.ts",
-      "accessCount": 1,
-      "lastAccessed": 1782144435282,
-      "type": "file"
-    },
-    {
       "path": "README.md",
       "accessCount": 1,
       "lastAccessed": 1782144435651,
@@ -280,6 +304,30 @@
       "path": "public/favicon.svg",
       "accessCount": 1,
       "lastAccessed": 1782144435835,
+      "type": "file"
+    },
+    {
+      "path": ".env.local",
+      "accessCount": 1,
+      "lastAccessed": 1782208253319,
+      "type": "file"
+    },
+    {
+      "path": "src/features/catalog/composables/useModules.ts",
+      "accessCount": 1,
+      "lastAccessed": 1782208299701,
+      "type": "file"
+    },
+    {
+      "path": "src/features/catalog/composables/useModule.ts",
+      "accessCount": 1,
+      "lastAccessed": 1782208303696,
+      "type": "file"
+    },
+    {
+      "path": "src/features/lesson/composables/useLesson.ts",
+      "accessCount": 1,
+      "lastAccessed": 1782208306453,
       "type": "file"
     }
   ],

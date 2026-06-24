@@ -14,7 +14,7 @@ const toneClass = {
 
 <template>
   <div
-    class="fixed top-4 inset-x-0 z-50 flex flex-col items-center gap-2 pointer-events-none"
+    class="fixed top-[68px] md:top-[76px] inset-x-0 z-50 flex flex-col items-center gap-2 pointer-events-none px-4"
     role="region"
     aria-live="polite"
   >

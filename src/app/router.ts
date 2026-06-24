@@ -55,13 +55,13 @@ const routes: RouteRecordRaw[] = [
         path: 'mock',
         name: 'mock',
         component: () => import('@/features/test/MockScreen.vue'),
-        meta: { requiresAuth: true },
+        meta: { requiresAuth: true, fullscreen: true },
       },
       {
         path: 'mock/:attemptId',
         name: 'mock-attempt',
         component: () => import('@/features/test/MockScreen.vue'),
-        meta: { requiresAuth: true },
+        meta: { requiresAuth: true, fullscreen: true },
         props: true,
       },
       {
