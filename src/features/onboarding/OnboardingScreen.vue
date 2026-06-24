@@ -8,15 +8,16 @@ import {
   stepTargetSchema,
   stepScoresSchema,
   stepGoalSchema,
-  ENT_MAX_SCORE,
   type ExpectedScoreValues,
 } from './schemas/onboarding'
+import { ENT_MAX_SCORE, subjectMax } from '@/shared/lib/constants/ent'
 import Stepper from '@/shared/components/Stepper.vue'
 import SearchSelect, {
   type SearchSelectOption,
 } from '@/shared/components/SearchSelect.vue'
 import LoadingSkeleton from '@/shared/components/LoadingSkeleton.vue'
 import ErrorState from '@/shared/components/ErrorState.vue'
+import EmptyState from '@/shared/components/EmptyState.vue'
 import { useAuthStore } from '@/shared/stores/auth'
 import { useUiStore } from '@/shared/stores/ui'
 import { t, tFn } from '@/shared/lib/i18n'
@@ -157,10 +158,44 @@ const canAdvance = computed(() => {
   return step3Ok.value
 })
 
+const isSubmitting = computed(() => updateProfile.isPending.value)
+
+// ────────────────── Inline validation ──────────────────
+
+function scoreError(subject: string, raw: number | null): string | null {
+  if (raw == null) return null
+  const max = subjectMax(subject)
+  if (!Number.isInteger(raw) || raw < 0 || raw > max) {
+    return outOfRange(max)
+  }
+  return null
+}
+
+const subjectErrors = computed<Record<string, string | null>>(() => {
+  const out: Record<string, string | null> = {}
+  for (const s of subjects.value) {
+    out[s] = scoreError(s, expectedMap[s])
+  }
+  return out
+})
+
+const targetScoreError = computed<string | null>(() => {
+  if (form.target_score == null) return null
+  const max = ENT_MAX_SCORE
+  if (
+    !Number.isInteger(form.target_score) ||
+    form.target_score < 0 ||
+    form.target_score > max
+  ) {
+    return outOfRange(max)
+  }
+  return null
+})
+
 // ────────────────── Actions ──────────────────
 
 function next(): void {
-  if (!canAdvance.value) return
+  if (!canAdvance.value || isSubmitting.value) return
   if (step.value < TOTAL_STEPS) step.value = (step.value + 1) as 1 | 2 | 3
   else void finish()
 }
@@ -189,7 +224,18 @@ function onTargetInput(e: Event): void {
   form.target_score = Number.isFinite(n) ? Math.trunc(n) : null
 }
 
+// Prevent the browser's default scroll-to-change on focused number inputs;
+// otherwise a stray trackpad swipe silently mutates the student's score.
+function blockWheel(e: WheelEvent): void {
+  const el = e.target as HTMLInputElement
+  if (el === document.activeElement) {
+    e.preventDefault()
+    el.blur()
+  }
+}
+
 function skipGoal(): void {
+  if (isSubmitting.value) return
   form.target_score = null
   void finish()
 }
@@ -213,15 +259,20 @@ async function finish(): Promise<void> {
 }
 
 const primaryLabel = computed(() => {
+  if (isSubmitting.value && step.value === TOTAL_STEPS) return t('onboarding.finishPending')
   if (step.value < TOTAL_STEPS) return t('onboarding.next')
   return t('onboarding.finish')
 })
 
 const scoreLabelFmt = tFn<(n: number | null | undefined) => string>('onboarding.minScore')
+const scoreMaxHint = tFn<(n: number) => string>('onboarding.scoreMaxHint')
+const outOfRange = tFn<(n: number) => string>('onboarding.scoreOutOfRange')
 </script>
 
 <template>
-  <section class="px-4 md:px-8 py-6 md:py-10 max-w-xl mx-auto pb-32 md:pb-10">
+  <section
+    class="min-h-dvh px-4 md:px-8 py-6 md:py-10 max-w-xl mx-auto pb-32 md:pb-10"
+  >
     <LoadingSkeleton v-if="isLoading" :rows="3" variant="card" />
 
     <ErrorState
@@ -239,9 +290,16 @@ const scoreLabelFmt = tFn<(n: number | null | undefined) => string>('onboarding.
       <Stepper :step="step" :total="TOTAL_STEPS" class="mb-6" />
 
       <!-- Step 1 — target uni + specialty -->
-      <div v-show="step === 1" class="space-y-5">
+      <div
+        v-show="step === 1"
+        :inert="step !== 1"
+        :aria-hidden="step !== 1"
+        class="space-y-5"
+      >
         <header>
-          <h1 class="font-display text-2xl md:text-3xl font-bold text-ink leading-tight">
+          <h1
+            class="text-[1.75rem] md:text-3xl font-bold text-ink leading-tight tracking-tight text-balance"
+          >
             {{ t('onboarding.stepTarget') }}
           </h1>
           <p class="mt-2 text-sm text-muted">{{ t('onboarding.stepTargetBody') }}</p>
@@ -253,6 +311,7 @@ const scoreLabelFmt = tFn<(n: number | null | undefined) => string>('onboarding.
             :options="universityOptions"
             :placeholder="t('onboarding.uniPlaceholder')"
             :aria-label="t('onboarding.stepTarget')"
+            :empty-label="t('onboarding.selectEmpty')"
           />
           <SearchSelect
             v-model="form.target_specialty"
@@ -261,7 +320,7 @@ const scoreLabelFmt = tFn<(n: number | null | undefined) => string>('onboarding.
             :empty-label="
               form.target_university == null
                 ? t('onboarding.specEmpty')
-                : 'Ничего не найдено.'
+                : t('onboarding.selectEmpty')
             "
             :disabled="form.target_university == null"
           />
@@ -281,46 +340,115 @@ const scoreLabelFmt = tFn<(n: number | null | undefined) => string>('onboarding.
       </div>
 
       <!-- Step 2 — expected scores per other subject -->
-      <div v-show="step === 2" class="space-y-5">
+      <div
+        v-show="step === 2"
+        :inert="step !== 2"
+        :aria-hidden="step !== 2"
+        class="space-y-5"
+      >
         <header>
-          <h1 class="font-display text-2xl md:text-3xl font-bold text-ink leading-tight">
+          <h1
+            class="text-[1.75rem] md:text-3xl font-bold text-ink leading-tight tracking-tight text-balance"
+          >
             {{ t('onboarding.stepScores') }}
           </h1>
           <p class="mt-2 text-sm text-muted">{{ t('onboarding.stepScoresBody') }}</p>
         </header>
 
-        <div class="space-y-3">
+        <p
+          class="rounded-card border border-hairline bg-card px-4 py-3 text-xs text-muted leading-relaxed"
+        >
+          {{ t('onboarding.scoresStructureNote') }}
+        </p>
+
+        <EmptyState
+          v-if="subjects.length === 0"
+          :title="t('onboarding.subjectsUnavailable')"
+          :body="t('states.errorBody')"
+        />
+
+        <div v-else class="space-y-3">
           <label
             v-for="subject in subjects"
             :key="subject"
             class="block"
           >
-            <span class="text-sm font-medium text-ink">{{ subject }}</span>
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-sm font-medium text-ink">{{ subject }}</span>
+              <span class="text-xs text-muted tabular-nums">
+                {{ scoreMaxHint(subjectMax(subject)) }}
+              </span>
+            </div>
             <input
               type="number"
               inputmode="numeric"
               min="0"
-              :max="ENT_MAX_SCORE"
+              :max="subjectMax(subject)"
               :value="expectedMap[subject] ?? ''"
-              :placeholder="`0 — ${ENT_MAX_SCORE}`"
-              class="mt-1.5 w-full h-12 px-3.5 rounded-button bg-card border border-hairline text-base text-ink tabular-nums placeholder:text-muted focus:outline-none focus:border-brand/40 focus:ring-2 focus:ring-brand/15 transition-colors"
+              :placeholder="`0 — ${subjectMax(subject)}`"
+              :aria-invalid="subjectErrors[subject] != null"
+              :aria-describedby="
+                subjectErrors[subject] != null ? `score-err-${subject}` : undefined
+              "
+              class="mt-1.5 w-full h-12 px-3.5 rounded-button bg-card border text-base text-ink tabular-nums placeholder:text-muted focus:outline-none focus:ring-2 transition-colors"
+              :class="
+                subjectErrors[subject] != null
+                  ? 'border-danger focus:border-danger focus:ring-danger/20'
+                  : 'border-hairline focus:border-brand/40 focus:ring-brand/15'
+              "
               @input="onScoreInput(subject, $event)"
+              @wheel="blockWheel"
             />
+            <p
+              v-if="subjectErrors[subject] != null"
+              :id="`score-err-${subject}`"
+              class="mt-1.5 text-xs text-danger flex items-center gap-1.5"
+            >
+              <svg
+                viewBox="0 0 16 16"
+                class="w-3.5 h-3.5 shrink-0"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="8" cy="8" r="7" />
+                <line x1="8" y1="5" x2="8" y2="9" />
+                <line x1="8" y1="11.5" x2="8.01" y2="11.5" />
+              </svg>
+              {{ subjectErrors[subject] }}
+            </p>
           </label>
         </div>
       </div>
 
       <!-- Step 3 — optional target score -->
-      <div v-show="step === 3" class="space-y-5">
+      <div
+        v-show="step === 3"
+        :inert="step !== 3"
+        :aria-hidden="step !== 3"
+        class="space-y-5"
+      >
         <header>
-          <h1 class="font-display text-2xl md:text-3xl font-bold text-ink leading-tight">
+          <h1
+            class="text-[1.75rem] md:text-3xl font-bold text-ink leading-tight tracking-tight text-balance"
+          >
             {{ t('onboarding.stepGoal') }}
           </h1>
           <p class="mt-2 text-sm text-muted">{{ t('onboarding.stepGoalBody') }}</p>
         </header>
 
         <label class="block">
-          <span class="text-sm font-medium text-ink">{{ t('profile.level') }}</span>
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-sm font-medium text-ink">
+              {{ t('onboarding.targetScoreLabel') }}
+            </span>
+            <span class="text-xs text-muted tabular-nums">
+              {{ scoreMaxHint(ENT_MAX_SCORE) }}
+            </span>
+          </div>
           <input
             type="number"
             inputmode="numeric"
@@ -328,20 +456,50 @@ const scoreLabelFmt = tFn<(n: number | null | undefined) => string>('onboarding.
             :max="ENT_MAX_SCORE"
             :value="form.target_score ?? ''"
             :placeholder="t('onboarding.targetScorePlaceholder')"
-            class="mt-1.5 w-full h-12 px-3.5 rounded-button bg-card border border-hairline text-base text-ink tabular-nums placeholder:text-muted focus:outline-none focus:border-brand/40 focus:ring-2 focus:ring-brand/15 transition-colors"
+            :aria-invalid="targetScoreError != null"
+            aria-describedby="target-score-err"
+            class="mt-1.5 w-full h-12 px-3.5 rounded-button bg-card border text-base text-ink tabular-nums placeholder:text-muted focus:outline-none focus:ring-2 transition-colors"
+            :class="
+              targetScoreError != null
+                ? 'border-danger focus:border-danger focus:ring-danger/20'
+                : 'border-hairline focus:border-brand/40 focus:ring-brand/15'
+            "
             @input="onTargetInput"
+            @wheel="blockWheel"
           />
+          <p
+            v-if="targetScoreError != null"
+            id="target-score-err"
+            class="mt-1.5 text-xs text-danger flex items-center gap-1.5"
+          >
+            <svg
+              viewBox="0 0 16 16"
+              class="w-3.5 h-3.5 shrink-0"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="8" cy="8" r="7" />
+              <line x1="8" y1="5" x2="8" y2="9" />
+              <line x1="8" y1="11.5" x2="8.01" y2="11.5" />
+            </svg>
+            {{ targetScoreError }}
+          </p>
         </label>
       </div>
 
-      <!-- Sticky footer with Back / primary -->
+      <!-- Sticky footer with Back / Skip / primary -->
       <div
         class="sticky bottom-4 md:static md:mt-8 z-30 mt-8 flex items-center gap-3"
       >
         <button
           v-if="step > 1"
           type="button"
-          class="shrink-0 h-12 px-5 rounded-button bg-card border border-hairline text-sm font-medium text-ink hover:bg-surface transition-colors"
+          class="shrink-0 h-12 px-5 rounded-button bg-card border border-hairline text-sm font-medium text-ink hover:bg-surface focus:outline-none focus:ring-2 focus:ring-brand/30 transition-colors"
+          :disabled="isSubmitting"
           @click="back"
         >
           {{ t('onboarding.back') }}
@@ -350,8 +508,8 @@ const scoreLabelFmt = tFn<(n: number | null | undefined) => string>('onboarding.
         <button
           v-if="step === 3"
           type="button"
-          class="shrink-0 h-12 px-4 rounded-button text-sm font-medium text-muted hover:text-ink transition-colors"
-          :disabled="updateProfile.isPending.value"
+          class="shrink-0 h-12 px-4 rounded-button text-sm font-medium text-muted hover:text-ink focus:outline-none focus:ring-2 focus:ring-brand/30 transition-colors disabled:opacity-50"
+          :disabled="isSubmitting"
           @click="skipGoal"
         >
           {{ t('onboarding.skip') }}
@@ -359,15 +517,23 @@ const scoreLabelFmt = tFn<(n: number | null | undefined) => string>('onboarding.
 
         <button
           type="button"
-          class="flex-1 inline-flex items-center justify-center h-12 px-6 rounded-button font-semibold text-base transition-colors shadow-elevated"
-          :class="
-            canAdvance && !updateProfile.isPending.value
-              ? 'bg-brand text-white hover:bg-brand-press active:scale-[0.98]'
-              : 'bg-card text-muted border border-hairline cursor-not-allowed opacity-60'
-          "
-          :disabled="!canAdvance || updateProfile.isPending.value"
+          class="flex-1 inline-flex items-center justify-center gap-2 h-12 px-6 rounded-button bg-brand text-white font-semibold text-base hover:bg-brand-press active:translate-y-[0.5px] focus:outline-none focus:ring-2 focus:ring-brand/40 disabled:opacity-50 disabled:hover:bg-brand disabled:cursor-not-allowed transition-colors"
+          :disabled="!canAdvance || isSubmitting"
+          :aria-busy="isSubmitting"
           @click="next"
         >
+          <svg
+            v-if="isSubmitting"
+            viewBox="0 0 20 20"
+            class="w-4 h-4 animate-spin shrink-0 motion-reduce:animate-none"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+            stroke-linecap="round"
+            aria-hidden="true"
+          >
+            <path d="M10 2a8 8 0 018 8" />
+          </svg>
           {{ primaryLabel }}
         </button>
       </div>

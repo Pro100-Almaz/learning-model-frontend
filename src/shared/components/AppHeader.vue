@@ -22,13 +22,13 @@ import { t } from '@/shared/lib/i18n'
       </RouterLink>
 
       <!--
-        Search (centered).
-        The flex-1 wrapper eats all remaining space; the SearchBar inside is
-        capped to max-w-md and centered, so brand→search distance equals
-        search→menu distance regardless of viewport width.
+        Search (centered, desktop only).
+        Hidden on mobile — BottomNav already covers primary navigation, and
+        global search adds chrome without enough payoff at small widths.
+        The flex-1 wrapper stays so AppMenu stays anchored to the right.
       -->
       <div class="flex-1 min-w-0 flex justify-center">
-        <SearchBar class="w-full max-w-md" />
+        <SearchBar class="hidden md:block w-full max-w-md" />
       </div>
 
       <!-- Menu (right) -->

@@ -49,7 +49,7 @@ describe('stepScoresSchema', () => {
     ).toBe(false)
   })
 
-  it(`rejects score above ${ENT_MAX_SCORE}`, () => {
+  it(`rejects score above ${ENT_MAX_SCORE} for unknown subject (falls back to total max)`, () => {
     expect(
       stepScoresSchema.safeParse({
         expected_scores: [{ subject: 'X', score: ENT_MAX_SCORE + 1 }],
@@ -57,9 +57,37 @@ describe('stepScoresSchema', () => {
     ).toBe(false)
   })
 
+  it('enforces per-subject max for «Грамотность чтения» (20)', () => {
+    expect(
+      stepScoresSchema.safeParse({
+        expected_scores: [{ subject: 'Грамотность чтения', score: 20 }],
+      }).success,
+    ).toBe(true)
+    expect(
+      stepScoresSchema.safeParse({
+        expected_scores: [{ subject: 'Грамотность чтения', score: 21 }],
+      }).success,
+    ).toBe(false)
+  })
+
+  it('enforces per-subject max for «Профильный предмет 2» (40)', () => {
+    expect(
+      stepScoresSchema.safeParse({
+        expected_scores: [{ subject: 'Профильный предмет 2', score: 40 }],
+      }).success,
+    ).toBe(true)
+    expect(
+      stepScoresSchema.safeParse({
+        expected_scores: [{ subject: 'Профильный предмет 2', score: 41 }],
+      }).success,
+    ).toBe(false)
+  })
+
   it('rejects non-integer score', () => {
     expect(
-      stepScoresSchema.safeParse({ expected_scores: [{ subject: 'X', score: 18.5 }] }).success,
+      stepScoresSchema.safeParse({
+        expected_scores: [{ subject: 'История Казахстана', score: 18.5 }],
+      }).success,
     ).toBe(false)
   })
 

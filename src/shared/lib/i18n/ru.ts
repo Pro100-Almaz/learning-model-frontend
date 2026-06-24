@@ -54,13 +54,21 @@ export const ru = {
     next: 'Дальше',
     back: 'Назад',
     finish: 'Готово',
+    finishPending: 'Сохраняем…',
     skip: 'Пропустить',
     uniPlaceholder: 'Найди свой ВУЗ',
     specPlaceholder: 'Выбери специальность',
     specEmpty: 'Сначала выбери ВУЗ',
+    selectEmpty: 'Ничего не найдено',
+    targetScoreLabel: 'Целевой балл',
     targetScorePlaceholder: 'Например, 115',
     minScore: (n: number | null | undefined) => (n == null ? '—' : `Проходной: ${n}`),
     submitError: 'Не получилось сохранить. Попробуй ещё раз.',
+    scoreMaxHint: (n: number) => `макс. ${n}`,
+    scoreOutOfRange: (max: number) => `Введи число от 0 до ${max}`,
+    scoresStructureNote:
+      'ЕНТ — 140 баллов: 3 предмета по 20 + 2 профильных по 40.',
+    subjectsUnavailable: 'Не удалось загрузить список предметов.',
   },
 
   dashboard: {

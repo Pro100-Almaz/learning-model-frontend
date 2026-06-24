@@ -11,13 +11,18 @@ const auth = useAuthStore()
 const open = ref(false)
 const rootEl = ref<HTMLDivElement | null>(null)
 
+/**
+ * `inBottomNav` items are duplicated by the mobile BottomNav, so we hide them
+ * from the burger menu at small widths. At md+ there's no BottomNav, so all
+ * items are visible.
+ */
 const items = [
-  { to: '/', label: t('nav.home'), exact: true },
-  { to: '/catalog', label: t('nav.topics'), exact: false },
-  { to: '/mock', label: t('nav.tests'), exact: false },
-  { to: '/analytics', label: t('nav.analytics'), exact: false },
-  { to: '/grant', label: t('nav.grant'), exact: false },
-  { to: '/profile', label: t('nav.profile'), exact: false },
+  { to: '/', label: t('nav.home'), exact: true, inBottomNav: true },
+  { to: '/catalog', label: t('nav.topics'), exact: false, inBottomNav: true },
+  { to: '/mock', label: t('nav.tests'), exact: false, inBottomNav: true },
+  { to: '/analytics', label: t('nav.analytics'), exact: false, inBottomNav: false },
+  { to: '/grant', label: t('nav.grant'), exact: false, inBottomNav: false },
+  { to: '/profile', label: t('nav.profile'), exact: false, inBottomNav: true },
 ] as const
 
 function toggle(): void {
@@ -94,7 +99,10 @@ function onLogout(): void {
           v-for="item in items"
           :key="item.to"
           :to="item.to"
-          class="block px-4 py-2.5 text-sm font-medium text-ink hover:bg-surface transition-colors"
+          :class="[
+            'px-4 py-2.5 text-sm font-medium text-ink hover:bg-surface transition-colors',
+            item.inBottomNav ? 'hidden md:block' : 'block',
+          ]"
           active-class="bg-surface text-brand"
           :exact-active-class="item.exact ? 'bg-surface text-brand' : ''"
           role="menuitem"

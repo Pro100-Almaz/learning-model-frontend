@@ -113,7 +113,12 @@ watch(() => props.disabled, (d) => {
 </script>
 
 <template>
-  <div ref="rootEl" class="relative">
+  <!--
+    When open, the root takes z-50 to win the local stacking battle. Otherwise
+    a later sibling (e.g. the specialty SearchSelect below the university one)
+    can paint over the dropdown options on some browsers / paint paths.
+  -->
+  <div ref="rootEl" class="relative" :class="open ? 'z-50' : ''">
     <div
       class="flex items-center gap-2 h-12 px-3.5 rounded-button bg-card border transition-colors"
       :class="[
@@ -165,7 +170,7 @@ watch(() => props.disabled, (d) => {
 
     <div
       v-if="open"
-      class="absolute left-0 right-0 top-full mt-2 z-30 rounded-card bg-card border border-hairline shadow-elevated overflow-hidden max-h-72 overflow-y-auto"
+      class="absolute left-0 right-0 top-full mt-2 z-50 rounded-card bg-card border border-hairline shadow-elevated overflow-hidden max-h-72 overflow-y-auto"
       role="listbox"
     >
       <div v-if="filtered.length === 0" class="px-4 py-3 text-sm text-muted">

@@ -1,39 +1,154 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1782142576578,
+  "lastScanned": 1782319622687,
   "projectRoot": "/Users/almazamanzholuly/Documents/qadam/learning-model-frontend",
   "techStack": {
-    "languages": [],
-    "frameworks": [],
-    "packageManager": null,
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "vue",
+        "version": "3.5.11",
+        "category": "frontend"
+      },
+      {
+        "name": "vite",
+        "version": "5.4.8",
+        "category": "build"
+      },
+      {
+        "name": "vitest",
+        "version": "2.1.2",
+        "category": "testing"
+      }
+    ],
+    "packageManager": "npm",
     "runtime": null
   },
   "build": {
-    "buildCommand": null,
-    "testCommand": null,
-    "lintCommand": null,
-    "devCommand": null,
-    "scripts": {}
+    "buildCommand": "npm run build",
+    "testCommand": "npm test",
+    "lintCommand": "npm run lint",
+    "devCommand": "npm run dev",
+    "scripts": {
+      "dev": "vite",
+      "build": "vue-tsc -b && vite build",
+      "preview": "vite preview",
+      "lint": "eslint . --ext .ts,.vue --max-warnings=0",
+      "format": "prettier --write .",
+      "test": "vitest run",
+      "test:watch": "vitest",
+      "typecheck": "vue-tsc --noEmit",
+      "openapi:gen": "openapi-typescript ../learning-model/plan/openapi.yaml -o src/shared/lib/api/schema.ts",
+      "mock:api": "prism mock ../learning-model/plan/openapi.yaml"
+    }
   },
   "conventions": {
     "namingStyle": null,
-    "importStyle": null,
+    "importStyle": "ES modules",
     "testPattern": null,
-    "fileOrganization": null
+    "fileOrganization": "feature-based"
   },
   "structure": {
     "isMonorepo": false,
     "workspaces": [],
-    "mainDirectories": [],
+    "mainDirectories": [
+      "public",
+      "src"
+    ],
     "gitBranches": null
   },
   "customNotes": [],
-  "directoryMap": {},
+  "directoryMap": {
+    "dist": {
+      "path": "dist",
+      "purpose": "Distribution/build output",
+      "fileCount": 6,
+      "lastAccessed": 1782319622681,
+      "keyFiles": [
+        "favicon.svg",
+        "index.html",
+        "manifest.webmanifest",
+        "registerSW.js",
+        "sw.js"
+      ]
+    },
+    "public": {
+      "path": "public",
+      "purpose": "Public files",
+      "fileCount": 1,
+      "lastAccessed": 1782319622683,
+      "keyFiles": [
+        "favicon.svg"
+      ]
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 2,
+      "lastAccessed": 1782319622683,
+      "keyFiles": [
+        "App.vue",
+        "main.ts"
+      ]
+    },
+    "dist/assets": {
+      "path": "dist/assets",
+      "purpose": "Static assets",
+      "fileCount": 84,
+      "lastAccessed": 1782319622684,
+      "keyFiles": [
+        "AnalyticsScreen-DMiJJ-96.js",
+        "AppShell-DrMq0p8h.js",
+        "CatalogScreen-vk9N7NHp.js"
+      ]
+    },
+    "src/app": {
+      "path": "src/app",
+      "purpose": "Application code",
+      "fileCount": 1,
+      "lastAccessed": 1782319622685,
+      "keyFiles": [
+        "router.ts"
+      ]
+    },
+    "src/test": {
+      "path": "src/test",
+      "purpose": "Test files",
+      "fileCount": 1,
+      "lastAccessed": 1782319622685,
+      "keyFiles": [
+        "setup.ts"
+      ]
+    }
+  },
   "hotPaths": [
     {
       "path": "src/shared/lib/i18n/ru.ts",
-      "accessCount": 14,
-      "lastAccessed": 1782290290695,
+      "accessCount": 18,
+      "lastAccessed": 1782321439108,
+      "type": "file"
+    },
+    {
+      "path": "src/features/onboarding/OnboardingScreen.vue",
+      "accessCount": 8,
+      "lastAccessed": 1782321523673,
       "type": "file"
     },
     {
@@ -62,14 +177,20 @@
     },
     {
       "path": "package.json",
-      "accessCount": 3,
-      "lastAccessed": 1782145085456,
+      "accessCount": 4,
+      "lastAccessed": 1782320022274,
       "type": "file"
     },
     {
       "path": "src/shared/components/LoadingSkeleton.vue",
-      "accessCount": 3,
-      "lastAccessed": 1782223303912,
+      "accessCount": 4,
+      "lastAccessed": 1782321333415,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/components/ErrorState.vue",
+      "accessCount": 4,
+      "lastAccessed": 1782321334425,
       "type": "file"
     },
     {
@@ -79,27 +200,21 @@
       "type": "file"
     },
     {
-      "path": "src/shared/components/ErrorState.vue",
-      "accessCount": 3,
-      "lastAccessed": 1782223327087,
-      "type": "file"
-    },
-    {
       "path": "src/features/analytics/AnalyticsScreen.vue",
       "accessCount": 3,
       "lastAccessed": 1782282304739,
       "type": "file"
     },
     {
-      "path": "src/features/onboarding/OnboardingScreen.vue",
-      "accessCount": 3,
-      "lastAccessed": 1782288582615,
-      "type": "file"
-    },
-    {
       "path": "src/shared/components/AppShell.vue",
       "accessCount": 3,
       "lastAccessed": 1782290312160,
+      "type": "file"
+    },
+    {
+      "path": "src/styles/main.css",
+      "accessCount": 3,
+      "lastAccessed": 1782320054689,
       "type": "file"
     },
     {
@@ -118,12 +233,6 @@
       "path": "tsconfig.node.json",
       "accessCount": 2,
       "lastAccessed": 1782145083449,
-      "type": "file"
-    },
-    {
-      "path": "src/styles/main.css",
-      "accessCount": 2,
-      "lastAccessed": 1782223176019,
       "type": "file"
     },
     {
@@ -187,6 +296,36 @@
       "type": "file"
     },
     {
+      "path": "README.md",
+      "accessCount": 2,
+      "lastAccessed": 1782320027783,
+      "type": "file"
+    },
+    {
+      "path": "index.html",
+      "accessCount": 2,
+      "lastAccessed": 1782321100515,
+      "type": "file"
+    },
+    {
+      "path": ".env.local",
+      "accessCount": 2,
+      "lastAccessed": 1782322133972,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/lib/api/client.ts",
+      "accessCount": 2,
+      "lastAccessed": 1782322535787,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/stores/auth.ts",
+      "accessCount": 2,
+      "lastAccessed": 1782322573230,
+      "type": "file"
+    },
+    {
       "path": "tsconfig.json",
       "accessCount": 1,
       "lastAccessed": 1782143582102,
@@ -202,12 +341,6 @@
       "path": "vitest.config.ts",
       "accessCount": 1,
       "lastAccessed": 1782143582841,
-      "type": "file"
-    },
-    {
-      "path": "index.html",
-      "accessCount": 1,
-      "lastAccessed": 1782143583018,
       "type": "file"
     },
     {
@@ -235,21 +368,9 @@
       "type": "file"
     },
     {
-      "path": "src/shared/stores/auth.ts",
-      "accessCount": 1,
-      "lastAccessed": 1782143685807,
-      "type": "file"
-    },
-    {
       "path": "src/shared/stores/ui.ts",
       "accessCount": 1,
       "lastAccessed": 1782143689344,
-      "type": "file"
-    },
-    {
-      "path": "src/shared/lib/api/client.ts",
-      "accessCount": 1,
-      "lastAccessed": 1782143698613,
       "type": "file"
     },
     {
@@ -295,21 +416,9 @@
       "type": "file"
     },
     {
-      "path": "README.md",
-      "accessCount": 1,
-      "lastAccessed": 1782144435651,
-      "type": "file"
-    },
-    {
       "path": "public/favicon.svg",
       "accessCount": 1,
       "lastAccessed": 1782144435835,
-      "type": "file"
-    },
-    {
-      "path": ".env.local",
-      "accessCount": 1,
-      "lastAccessed": 1782208253319,
       "type": "file"
     },
     {

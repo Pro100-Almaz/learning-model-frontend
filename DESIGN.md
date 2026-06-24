@@ -1,198 +1,247 @@
-<design-context>
 ---
-version: alpha
-name: Coursera
-description: "Coursera Blue (#0056D2) on white — a platform that must earn institutional credibility from universities while engaging individual learners. Complex content hierarchy (courses → modules → lessons), progress systems, and a video player UI that never competes with the lecture itself."
-
+name: Qadam
+description: "Ascent — turn ЕНТ anxiety into a visible climb toward a grant. Quiet UI with one signature: the Trajectory."
 colors:
-  primary: "#0056D2"
-  on-primary: "#FFFFFF"
-  primary-hover: "#004BB5"
-  ink: "#1F1F1F"
-  ink-muted: "#5C5C5C"
-  ink-subdued: "#8C8C8C"
-  canvas: "#FFFFFF"
-  canvas-subdued: "#F5F7F9"
-  surface-1: "#FFFFFF"
-  surface-2: "#F5F7F9"
-  border: "#D6DBDF"
-  border-subtle: "#EEF0F2"
-  progress-fill: "#0056D2"
-  progress-track: "#D6DBDF"
-  certificate-gold: "#F5AF02"
-  streak-orange: "#F68A1E"
-  grade-pass: "#1FA15F"
-  grade-fail: "#D9534F"
-  partner-badge: "#0056D2"
-
+  ink: "#161427"
+  brand: "#6D4AFF"
+  brand-press: "#5A3AE0"
+  ascent: "#FF8A3D"
+  success: "#12B886"
+  danger: "#F03E5E"
+  surface: "#F6F6FB"
+  card: "#FFFFFF"
+  muted: "#6E6B85"
+  hairline: "#E8E7F0"
 typography:
   display:
-    fontFamily: "Source Sans Pro, system-ui, -apple-system, sans-serif"
-    fontSize: 32px
+    fontFamily: "Unbounded, system-ui, -apple-system, sans-serif"
+    fontSize: "40px"
+    fontWeight: 700
+    lineHeight: 1.1
+    letterSpacing: "-0.02em"
+    fontFeature: "tnum"
+  headline:
+    fontFamily: "Onest, Inter, system-ui, sans-serif"
+    fontSize: "28px"
     fontWeight: 700
     lineHeight: 1.2
-    letterSpacing: -0.01em
+    letterSpacing: "-0.01em"
+  title:
+    fontFamily: "Onest, Inter, system-ui, sans-serif"
+    fontSize: "20px"
+    fontWeight: 600
+    lineHeight: 1.3
   body:
-    fontFamily: "Source Sans Pro, system-ui, -apple-system, sans-serif"
-    fontSize: 16px
+    fontFamily: "Onest, Inter, system-ui, sans-serif"
+    fontSize: "16px"
     fontWeight: 400
-    lineHeight: 1.7
-    letterSpacing: 0em
-
+    lineHeight: 1.5
+  label:
+    fontFamily: "Onest, Inter, system-ui, sans-serif"
+    fontSize: "14px"
+    fontWeight: 500
+    lineHeight: 1.4
+  caption:
+    fontFamily: "Onest, Inter, system-ui, sans-serif"
+    fontSize: "12px"
+    fontWeight: 500
+    lineHeight: 1.4
+rounded:
+  button: "12px"
+  card: "16px"
+  pill: "9999px"
 spacing:
-  base: 8px
-  scale: [4, 8, 12, 16, 24, 32, 48, 64, 96, 128]
-
-radius:
-  sm: 4px
-  md: 8px
-  lg: 16px
-  pill: 9999px
-
-shadows:
-  card: "0 2px 8px rgba(0,0,0,0.08)"
-  elevated: "0 4px 20px rgba(0,0,0,0.12)"
-  modal: "0 8px 40px rgba(0,0,0,0.18)"
-
-motion:
-  duration-fast: 150ms
-  duration-base: 250ms
-  easing: cubic-bezier(0.4, 0, 0.2, 1)
+  xs: "4px"
+  sm: "8px"
+  md: "12px"
+  lg: "16px"
+  xl: "24px"
+  "2xl": "32px"
+components:
+  button-primary:
+    backgroundColor: "{colors.brand}"
+    textColor: "{colors.card}"
+    rounded: "{rounded.button}"
+    padding: "12px 20px"
+    typography: "{typography.label}"
+  button-primary-hover:
+    backgroundColor: "{colors.brand-press}"
+    textColor: "{colors.card}"
+    rounded: "{rounded.button}"
+  button-ghost:
+    backgroundColor: "{colors.card}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.button}"
+    padding: "12px 20px"
+  card-surface:
+    backgroundColor: "{colors.card}"
+    rounded: "{rounded.card}"
+    padding: "20px"
+  chip-tag:
+    backgroundColor: "{colors.surface}"
+    textColor: "{colors.muted}"
+    rounded: "{rounded.pill}"
+    padding: "4px 12px"
+    typography: "{typography.caption}"
+  input-field:
+    backgroundColor: "{colors.card}"
+    textColor: "{colors.ink}"
+    rounded: "{rounded.button}"
+    padding: "12px 16px"
+    typography: "{typography.body}"
 ---
 
-## Rationale
+# Design System: Qadam
 
-**Dual trust targets** — Coursera must be trusted by two very different audiences simultaneously. Universities (Yale, Stanford, Google, IBM) consider whether their brand is well represented on this platform — they require institutional seriousness, clean typography, and conservative visual restraint. Individual learners need to feel that progress is rewarding, that content is approachable, and that completing a course matters. Coursera Blue (#0056D2) threads this needle: professional enough for the university audience, direct and confident enough to feel like a modern learning platform rather than a stuffy LMS.
+## 1. Overview
 
-**Progress as motivational architecture** — Learning is not a single session — it is a habit sustained over weeks or months. Coursera's design system treats progress visualization as a core product function, not a cosmetic feature. Completion percentages, module progress bars, streak counters, and certificate progress indicators are deliberately prominent. The design ensures that every time a learner opens the platform, they can immediately assess how far they've come and how close they are to their next milestone. This visibility is motivationally essential.
+**Creative North Star: "The Ascent"**
 
-**The video player is the primary interaction surface** — In most Coursera courses, the lecture video is the primary content format. Everything else — readings, assignments, quizzes — supplements the video. The platform UI is therefore engineered to serve the video, not compete with it. The player is full-width, the UI chrome collapses when video is playing, and post-video content (discussion, next item) appears below without demanding attention during playback.
+Qadam's identity is a climb. Not a celebration, not a tutorial — a visible, honest climb toward a single high-stakes target (the ЕНТ score that unlocks a state grant). The product must *show* that climb. Everything around the climb gets out of its way.
 
-**Long reading sessions demand legibility** — Source Sans Pro at 16px with 1.7 line height reflects the reality that learners often read long assignment briefs, peer review rubrics, and discussion forum posts within the platform. The generous line height and humanist letterforms reduce fatigue across sustained reading. This is a deliberate departure from the dense-table conventions of enterprise software — education is a reading-heavy domain.
+The surface is quiet by design: lavender-tinted cool neutrals, generous whitespace, one soft shadow, and a single signature accent — **`#6D4AFF` Ascent Violet** — used as a true Committed brand color on actions and progress, not as decoration. Type is restrained Onest for the body, with **Unbounded** reserved for scores and screen titles where the brand needs to flex. The whole system is mobile-first; touch targets, sticky bottom CTAs, and safe-area insets are first-class, not retrofits.
 
-## 1. Visual Theme & Atmosphere
-Coursera presents a bright, academic environment. White content surfaces, very light gray (#F5F7F9) page backgrounds, and ample white space communicate that this is a place to think and learn, not to manage tasks. The tone is optimistic and approachable — course cards use the university or organization's own brand photography, giving each course a distinct visual identity within the consistent blue-and-white shell.
+What this system explicitly rejects: Duolingo-style gamification (no cartoon mascots, no confetti, no candy palette), government / LMS portal heaviness (no stock-photo banners, no dated buttons, no dense bureaucratic forms), and edtech-cute illustration sets (no pastel character art carrying the brand).
 
-The interface is structured into a clear hierarchy: platform nav (top bar), course nav (left sidebar during a course), and content area. Learners spend most of their time in the content area; the navigation is there when needed but recedes when not.
+**Key Characteristics:**
+- Mobile-first (designed at 360–414px; desktop is a courtesy).
+- Quiet UI, loud moments — color and motion spend only on dopamine beats (XP, streak, correct answer, Trajectory fill).
+- One signature: the Trajectory — predicted score climbing toward target. Everything else stays plain.
+- Cyrillic-first: every face ships full Cyrillic; no Latin-only display fonts.
+- Honest progress. Show the real gap; never fake forward motion.
 
-## 2. Color System
-**Canvas**:
-- Page background: #F5F7F9 — very light cool gray, reduces harsh white on long sessions
-- Content surface: #FFFFFF — lecture pages, assignment areas, discussion threads
-- Border: #D6DBDF — structural edges, card outlines
-- Border subtle: #EEF0F2 — internal dividers, table rows
+## 2. Colors
 
-**Primary**:
-- Coursera Blue: #0056D2 — primary buttons, active navigation, progress fills, links
-- Hover: #004BB5 — deeper blue on interaction
+A cool lavender-grey canvas anchors a single committed brand violet, with a warm orange reserved exclusively for motivational momentum (XP, streak) and unambiguous success / danger semantics.
 
-**Text**:
-- Default: #1F1F1F — near-black for all content
-- Muted: #5C5C5C — secondary labels, metadata, timestamps
-- Subdued: #8C8C8C — very secondary information, captions, footnotes
+### Primary
+- **Ascent Violet** (`#6D4AFF`): The committed brand color. Primary buttons, active navigation, progress fills, links, focus rings, the Trajectory's predicted-score track. Used decisively, not sprinkled.
+- **Ascent Violet Press** (`#5A3AE0`): Pressed / active state on primary buttons and links. Only appears under finger / cursor.
 
-**Progress & achievement**:
-- Progress fill: #0056D2 — progress bars use the primary brand blue
-- Certificate gold: #F5AF02 — course certificate completions, achievement unlocks
-- Streak orange: #F68A1E — streak counter badge, learning streak fire icon
+### Secondary
+- **Momentum Orange** (`#FF8A3D`): The XP and streak color. Reserved exclusively for gamification dopamine beats — XP gain, streak flame, level-up moments. Never used as a UI accent, never as a primary action. Its rarity is the point.
 
-**Grade / assessment**:
-- Pass: #1FA15F green — passing grade, quiz correct answers
-- Fail: #D9534F red — failing grade, incorrect answers, missed deadlines
+### Tertiary (semantic states)
+- **Success Green** (`#12B886`): Correct answer in tests; "qualifies for grant" margin badge.
+- **Danger Red** (`#F03E5E`): Wrong answer; gap-to-goal callout; destructive confirmations.
+
+### Neutral
+- **Deep Ink** (`#161427`): Primary text. Near-black with a slight violet undertone so it sits inside the brand family. Body, headings, icon strokes.
+- **Muted** (`#6E6B85`): Secondary text — metadata, captions, helper text. Sits in the violet family rather than going generic gray.
+- **Surface** (`#F6F6FB`): App background. Cool, very-light lavender — the canvas under all cards.
+- **Card** (`#FFFFFF`): Content surface. Cards, sheets, dialogs.
+- **Hairline** (`#E8E7F0`): Borders and dividers. Internal structure only; never used as decoration.
+
+### Named Rules
+
+**The One Voice Rule.** Ascent Violet (`#6D4AFF`) is the *only* color that may carry a primary action or carry the Trajectory's predicted-score track. Do not use it as a background tint, a decorative gradient, or a "brand splash." Its impact comes from rarity and consistency.
+
+**The Momentum Quarantine.** Momentum Orange (`#FF8A3D`) is quarantined to gamification: XP toasts, the streak flame, level-up moments. It must never carry a button, a link, an icon outside the gamification system, or a page background. The moment it leaks, the dopamine signal dies.
+
+**The Color-Never-Alone Rule.** Correct / wrong, qualifies / doesn't qualify, error / success: color *always* pairs with an icon and a text label. A red border, a green checkmark, a violet underline — none of these stand on their own.
 
 ## 3. Typography
-Source Sans Pro (designed by Paul Hunt for Adobe, released open source) is optimized for user interface reading, particularly in screen-reading scenarios that require sustained attention. Its wide proportions and open apertures at 16px body produce comfortable reading across the mix of short labels and long-form text that Coursera content requires.
 
-Display text (course titles, module headings): 32px down to 24px, weight 700, tight letter-spacing. These headings are curriculum signposts — learners scan them to navigate a course's structure and understand what they're about to study.
+**Display Font:** Unbounded (with `system-ui`, `-apple-system` fallback).
+**Body Font:** Onest (with `Inter`, `system-ui` fallback).
 
-Body text (reading materials, assignment instructions, discussion posts): 16px, weight 400, 1.7 line height. The 1.7 line height is higher than typical UI text defaults — it's tuned for paragraphs, not single-line labels.
+**Character:** A geometric, distinctive display face (Unbounded) used *with restraint* on scores and screen titles, paired with a humanist sans (Onest) tuned for sustained Russian and Kazakh reading. Both ship full Cyrillic — non-negotiable for this market. The pair contrasts on the geometric ↔ humanist axis, not on serif/sans, which keeps Unbounded's character punchy without making the UI feel mismatched.
 
-Assessment question text: 16px weight 600 for the question stem, 15px weight 400 for answer options. The weight differential signals what is the question and what is the response.
+### Hierarchy
+- **Display** (700, 40px, line-height 1.1, letter-spacing -0.02em, tabular-nums): Predicted score on the dashboard, score header on results, Trajectory primary readout. Sparingly. *Unbounded.*
+- **Headline** (700, 28px, 1.2): Screen titles, section heroes. *Onest.*
+- **Title** (600, 20px, 1.3): Card titles, dialog headers, module names. *Onest.*
+- **Body** (400, 16px, 1.5): Default reading text — lesson descriptions, question stems, prose. Line length capped at 65–75ch. *Onest.*
+- **Label** (500, 14px, 1.4): Button text, form labels, list-row primary text. *Onest.*
+- **Caption** (500, 12px, 1.4): Metadata, timestamps, helper text under inputs, chip text. *Onest.*
 
-## 4. Components & Patterns
-**Course card**:
-- Course thumbnail image (16:9), course title, institution logo, difficulty badge, duration
-- Rating (star score + count), enrollment count for social proof
-- "Enroll" CTA or progress bar if already enrolled
-- Partner badge: small institution logo in the card corner
+### Named Rules
 
-**Course content sidebar**:
-- Collapsible module list with week labels (Week 1, Week 2, etc.)
-- Each module: lesson items with completion checkmarks
-- Completed items: checkmark icon in #1FA15F; current item: blue dot; upcoming: empty circle
-- Progress bar beneath each module showing x/n items completed
+**The Tabular-Nums Rule.** Every score, XP value, percent, countdown, and Trajectory readout uses `font-variant-numeric: tabular-nums`. Digits must not jitter as they animate; the dashboard predicted score moving from 134 → 137 must change *value*, not *width*.
 
-**Video lecture player**:
-- Full-width ratio (16:9), playback controls at bottom
-- Closed captions toggle, quality selector, playback speed (0.75×–2×)
-- Notes panel can expand on the right (for taking timestamped notes)
-- "Next item" button appears after video completion — slides in from right
+**The Unbounded Quarantine.** Unbounded appears in three places only: the predicted score on the dashboard, the score header on `/results`, and the Trajectory's primary readout. Everywhere else is Onest. If you're reaching for Unbounded on a section heading or a button, you're wrong — pull back to Onest.
 
-**Progress bar component**:
-- Thin (8px height) horizontal bar, #0056D2 fill on #D6DBDF track
-- Percentage label shown at right end
-- Used in: course cards, module headers, certificate progress, weekly goal tracker
+**The Cyrillic Hard-Constraint Rule.** Any new face introduced into the system must ship full Cyrillic glyph coverage. Latin-only display fonts are forbidden. The fallback stack (`system-ui, -apple-system, sans-serif`) is the safety net, not the design.
 
-**Assessment quiz**:
-- Question number indicator at top ("Question 2 of 10")
-- Multiple choice: radio buttons with clear answer option text
-- Submission: blue "Submit" button; after: shows correct/incorrect state with explanation
-- Score summary at end: grade badge (Pass/Fail with percentage)
+## 4. Elevation
 
-**Discussion forum thread**:
-- Post: avatar, display name, timestamp, content (rich text support)
-- Upvote count, reply count
-- Mentor / Staff badges on authorized responders
-- Thread expansion to show replies
+Qadam is flat by default with a single soft shadow for cards. Depth is mostly conveyed through tonal layering — cards (`#FFFFFF`) on the lavender-tinted surface (`#F6F6FB`) — with shadow used only to lift the card a half-step off the page. Modals and toasts lift further with `elevated`; nothing in the system uses heavy shadows, layered shadows, or "shadow soup."
 
-**Certificate of completion**:
-- Rendered as a formal document: Coursera logo, institution logo, learner name, course name, completion date
-- Gold accent elements (#F5AF02)
-- Shareable link, downloadable PDF, LinkedIn add button
+### Shadow Vocabulary
+- **Card** (`box-shadow: 0 2px 12px rgb(22 20 39 / 0.06)`): The default card shadow. Tinted with the ink color so it reads as belonging to the violet family, not a neutral gray drop. Applies to dashboard tiles, course cards, sheets, the Trajectory container.
+- **Elevated** (`box-shadow: 0 8px 24px rgb(22 20 39 / 0.10)`): Reserved for modals, toasts, the XP gain pop, and any element that needs to read as floating above the page.
 
-## 5. Spacing & Layout
-Coursera uses an 8px base grid. Course catalog pages: 24px page gutters, 24px card gap in a 3-column or 4-column grid. Course content pages: 240px left sidebar, fluid main content area capped at 820px for optimal reading line length (70–80 characters).
+### Named Rules
 
-Video player: full width of the content area. Below the video: tabs (Notes, Discussion, Resources) with 24px padding. Assignment pages: same 820px max-width, 32px top padding.
+**The Flat-By-Default Rule.** Surfaces are flat at rest. Don't reach for shadow to communicate hierarchy; reach for whitespace, type weight, and color first. Shadow is the last resort, not the first.
 
-Mobile: single-column layout, sidebar collapses to a top progress indicator strip, bottom tab bar for navigation.
+**The Single-Shadow Rule.** A card has *one* shadow. Layering two box-shadows on the same element ("ambient + key") is forbidden — it's the saturated 2014 SaaS look, and it doesn't read as "premium," it reads as "designed before flat design was settled."
 
-## 6. Motion & Interaction
-Progress bar fill animations use 400ms ease-out when a new item is completed — a moment of visual reward for the learner. Checkmarks on completed items use a brief scale animation (100ms) to make the completion feel registered.
+## 5. Components
 
-Video player controls fade in on hover (150ms) and fade out after 3 seconds of inactivity — the standard pattern for video platforms, keeping playback immersive.
+### Buttons
+- **Shape:** Gentle rounding (`12px` radius). Pills (`9999px`) only on chips and small affordances, never on primary CTAs.
+- **Primary:** Ascent Violet (`#6D4AFF`) background, white (`#FFFFFF`) text, 12px × 20px padding, Label typography. The single most important affordance in the system; never decorated, never gradient, never iconized "just to look interactive."
+- **Hover / Press:** Background shifts to `#5A3AE0` (Ascent Violet Press); no shadow change, no scale.
+- **Ghost / Secondary:** White card background, ink text, 1px hairline border. Used for secondary actions in the same flow as a primary; never used for the *one* primary CTA on a screen.
+- **Disabled:** 50% opacity on the entire button. No grey-out — opacity preserves brand color while signaling unavailability.
+- **Touch target:** ≥44px tall on mobile, always. Sticky bottom CTAs on lesson and test screens sit within thumb reach and honor `env(safe-area-inset-bottom)`.
 
-Certificate reveal uses a longer motion sequence (600ms) — the one place in the interface where theatrical motion is appropriate and earns its keep as a reward moment.
+### Cards
+- **Corner Style:** `16px` radius (`{rounded.card}`).
+- **Background:** White (`#FFFFFF`) on the lavender surface.
+- **Shadow Strategy:** Card shadow (see Elevation) by default. No hover lift; this is a serious learning surface, not a click-bait carousel.
+- **Border:** None by default. A `1px solid #E8E7F0` (Hairline) only when the card sits on white (e.g. inside a modal) and needs an edge to separate it from the surrounding surface.
+- **Internal Padding:** `20px` standard; `16px` on dense mobile cards.
 
-Page transitions between course items are instant (no animation) to keep the learning flow snappy.
+### Inputs / Fields
+- **Style:** White card background, `12px` radius, `1px solid #E8E7F0` hairline border, `12px × 16px` padding, Body typography.
+- **Focus:** 2px solid Ascent Violet outline with 2px offset. Never relies on color alone — the outline shift is structural.
+- **Error:** 2px Danger Red outline + an icon + a Caption-sized error message below the field. Three signals, never one.
+- **Disabled:** Background drops to Surface (`#F6F6FB`); cursor: not-allowed.
 
-## Accessibility
+### Chips / Tags
+- **Style:** Pill (`9999px`), Surface (`#F6F6FB`) background, Muted (`#6E6B85`) text, Caption typography, `4px × 12px` padding. No border by default.
+- **Active / selected:** Background fills with Ascent Violet, text flips to white. Used in onboarding's subject selectors, analytics tag filters, recommendation rows.
 
-### Contrast Ratios
-- **#1F1F1F on #FFFFFF**: 18.7:1 — passes AAA
-- **#5C5C5C on #FFFFFF**: 7.4:1 — passes AAA
-- **#8C8C8C on #FFFFFF**: 3.9:1 — fails AA for body text; use only at 18px+ for decorative text
-- **#FFFFFF on #0056D2 primary button**: 7.0:1 — passes AAA
-- **#FFFFFF on #1FA15F pass grade**: 4.6:1 — passes AA
-- **#FFFFFF on #D9534F fail grade**: 4.8:1 — passes AA
-- **#1F1F1F on #F5F7F9 page background**: 17.5:1 — passes AAA
+### Navigation
+- **Mobile (`<BottomNav>`):** Fixed bottom bar, four tabs (Главная · Темы · Тесты · Профиль), each ≥44px target. Active tab shows Ascent Violet icon + label; inactive tabs use Muted. Safe-area inset honored.
+- **Desktop (`<Sidebar>`, `md:`+):** Left rail. Active item: Ascent Violet text + a 2px left accent bar in the same color. Inactive: Muted text, no decoration.
+- **No hover-only affordances anywhere.** Every interaction works on touch.
 
-### Minimum Requirements
-- **Video captions**: closed captions required for all video content — WCAG 1.2.2; Coursera displays captions by default
-- **Assessment feedback**: correct/incorrect states use color + icon + text label — never color-only
-- **Touch targets**: 44×44px minimum; critical for mobile learners
-- **Focus indicator**: 2px solid #0056D2 outline with 2px offset on all interactive elements
-- **Skip navigation**: "Skip to content" link at the top of course pages for screen reader users to bypass the course sidebar
+### The Trajectory (signature component)
+The product's single distinctive component. A track showing the student's **predicted ЕНТ score climbing toward their target line**, with the gap explicitly called out.
 
-### Motion
-- Respects `prefers-reduced-motion`: yes — progress bar fill animation, completion checkmark scale, certificate reveal all suppressed
-- Video autoplay (next item) should be disabled under reduced-motion preferences
+- **Track:** Ascent Violet fill on a Hairline (`#E8E7F0`) base track. The fill height is the predicted value; the target line sits as a 2px Ink (`#161427`) marker above (or below) the fill.
+- **Readouts:** Predicted score in Display type (Unbounded, tabular-nums). Target score in Title type. Gap in Caption with a directional indicator.
+- **Variants:**
+  - **Compact** — on the dashboard, ~120px tall, horizontal orientation, predicted + target + delta visible.
+  - **Full** — on `/grant`, dominant element of the screen, ~280px tall, vertical orientation, with math `{x} + другие {y} = прогноз {N}` annotation and the qualifying universities list rendered below.
+- **Motion:** The fill animates from 0 → predicted on first paint (≤600ms, exponential ease-out). Subsequent updates animate from previous → new value. Both respect `prefers-reduced-motion: reduce` — the value snaps without animation.
+- **Empty state:** Before any mock test exists, the Trajectory is replaced by a CTA card prompting the student to take the first mock. The component never renders empty.
 
-### Notes
-- #8C8C8C on white (3.9:1) fails AA for body text — it should only be used for non-essential captions and decorative text at large sizes
-- Certificate gold (#F5AF02) on white achieves only 2.3:1 — it is never used as text on white; it is a decorative/illustrative color only
-- Discussion forums with user-generated content must maintain a minimum 14px font size enforced by the rendering layer — prevent user CSS from reducing text below readable thresholds
+## 6. Do's and Don'ts
 
-</design-context>
+### Do:
+- **Do** spend the Ascent Violet on what matters: the primary button on the screen, the Trajectory fill, the active nav state, the focus ring. Nothing else.
+- **Do** use tabular-nums on every numeric readout — scores, XP, percentages, countdowns, Trajectory values.
+- **Do** ship every data view with three states: `LoadingSkeleton`, `EmptyState` (with a CTA), `ErrorState` (with retry). No bare spinners-forever, no blank screens.
+- **Do** pair color with icon + text on every semantic state (correct, wrong, qualifies, doesn't qualify, error).
+- **Do** design at 360–414px first. Touch targets ≥44px. Sticky bottom CTAs honor `env(safe-area-inset-bottom)`.
+- **Do** quarantine Momentum Orange (`#FF8A3D`) to XP and streak. Anywhere else, the dopamine signal dies.
+- **Do** keep Unbounded for predicted-score, results header, and Trajectory readout. Use Onest everywhere else.
+- **Do** honor `prefers-reduced-motion: reduce` globally — Trajectory fill, XP toast, streak pulse, level-up, certificate reveal all collapse to instant or crossfade.
+- **Do** write copy in active voice, sentence case, Russian. Buttons name the action and keep the name through the flow ("Рассчитать" stays "Рассчитать"). Empty states invite action; errors give direction.
 
-Use the design system above for all UI you generate.
+### Don't:
+- **Don't** make this look like Duolingo. No cartoon mascots, no confetti, no candy-colored UI, no points-as-personality. XP and streak stay quiet.
+- **Don't** make this look like a government or LMS portal (BilimLand, e-gov, Moodle). No stock-photo banners, no dated buttons, no dense bureaucratic forms.
+- **Don't** introduce edtech-cute illustrations. No pastel students, books, rockets, or mascots carrying the brand. Identity comes from type, motion, and the Trajectory — not character art.
+- **Don't** use `border-left` greater than 1px as a colored side-stripe accent on cards, callouts, or list items. It's the saturated AI-default move; rewrite with full borders, background tints, or leading icons.
+- **Don't** use gradient text (`background-clip: text` + gradient). Solid color only. Emphasis via weight or size.
+- **Don't** decorate with glassmorphism (backdrop-filter blurs as a default). Rare and purposeful, or nothing.
+- **Don't** stack two box-shadows on one element ("ambient + key"). One shadow per surface; everything else is shadow soup.
+- **Don't** use Ascent Violet as a background tint, gradient, or decorative wash. It carries actions and progress; outside that, it's white space.
+- **Don't** reuse `brand` for semantic state. Correct uses `success`, wrong uses `danger`. Never overload the brand color into a state signal.
+- **Don't** introduce a new font without full Cyrillic coverage. Latin-only display fonts are forbidden in this product.
+- **Don't** rely on hover-only affordances. Every interaction must work on touch.
