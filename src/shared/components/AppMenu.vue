@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
+import { useAuth } from '@clerk/vue'
 import { onClickOutside } from '@vueuse/core'
 import { useAuthStore } from '@/shared/stores/auth'
 import { t } from '@/shared/lib/i18n'
 
 const router = useRouter()
 const auth = useAuthStore()
+const { signOut } = useAuth()
 
 const open = ref(false)
 const rootEl = ref<HTMLDivElement | null>(null)
@@ -46,10 +48,11 @@ function onKeydown(e: KeyboardEvent): void {
   if (e.key === 'Escape' && open.value) close()
 }
 
-function onLogout(): void {
+async function onLogout(): Promise<void> {
   close()
   auth.logout()
-  void router.replace({ name: 'login' })
+  await signOut.value({ redirectUrl: '/login' })
+  await router.replace({ name: 'login' })
 }
 </script>
 

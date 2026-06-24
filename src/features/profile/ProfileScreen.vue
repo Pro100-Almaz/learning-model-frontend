@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import { useAuth } from '@clerk/vue'
 import { useGamification } from './composables/useGamification'
 import XPBar from './components/XPBar.vue'
 import StreakFlame from './components/StreakFlame.vue'
@@ -11,12 +12,14 @@ import { t } from '@/shared/lib/i18n'
 
 const router = useRouter()
 const auth = useAuthStore()
+const { signOut } = useAuth()
 
 const { data: gam, isPending, isError, error, refetch } = useGamification()
 
-function onLogout(): void {
+async function onLogout(): Promise<void> {
   auth.logout()
-  void router.replace({ name: 'login' })
+  await signOut.value({ redirectUrl: '/login' })
+  await router.replace({ name: 'login' })
 }
 </script>
 

@@ -1,42 +1,36 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
+import { computed } from 'vue'
+import { useAuth, useClerk } from '@clerk/vue'
+import { useRoute } from 'vue-router'
 import { useAuthStore } from '@/shared/stores/auth'
-import { useUiStore } from '@/shared/stores/ui'
 import { t } from '@/shared/lib/i18n'
 
-const router = useRouter()
+const route = useRoute()
+const clerk = useClerk()
+const clerkAuth = useAuth()
 const auth = useAuthStore()
-const ui = useUiStore()
-const loading = ref(false)
 
-/**
- * Real Google OAuth flow lands in T-005 finalisation once VITE_GOOGLE_CLIENT_ID
- * is provisioned (README blocker #3). Until then this stubs a session so the
- * rest of the app is reachable for development.
- */
-async function onGoogleSignIn(): Promise<void> {
-  if (loading.value) return
-  loading.value = true
-  try {
-    await new Promise((r) => setTimeout(r, 400))
-    auth.setSession({
-      access: 'dev-access-token',
-      refresh: 'dev-refresh-token',
-      user: {
-        id: 1,
-        email: 'demo@qadam.local',
-        first_name: 'Demo',
-        is_staff: false,
-        onboarding_completed: false,
-      },
-    })
-    await router.replace({ name: 'onboarding' })
-  } catch {
-    ui.pushToast(t('auth.login.error'), 'danger')
-  } finally {
-    loading.value = false
+const redirectUrl = computed(() => {
+  const next = typeof route.query.next === 'string' ? route.query.next : '/'
+  return next.startsWith('/') ? next : '/'
+})
+
+const hasBackendAuthError = computed(() => route.query.auth_error === 'backend')
+const ctaLabel = computed(() =>
+  clerkAuth.isSignedIn.value ? t('auth.logout') : t('auth.login.ctaGoogle'),
+)
+
+async function onAuthClick(): Promise<void> {
+  if (clerkAuth.isSignedIn.value) {
+    auth.logout()
+    await clerkAuth.signOut.value({ redirectUrl: '/login' })
+    return
   }
+
+  clerk.value?.openSignIn({
+    forceRedirectUrl: redirectUrl.value,
+    fallbackRedirectUrl: redirectUrl.value,
+  })
 }
 </script>
 
@@ -62,14 +56,20 @@ async function onGoogleSignIn(): Promise<void> {
           {{ t('auth.login.subheading') }}
         </p>
 
+        <p
+          v-if="hasBackendAuthError"
+          class="mt-4 rounded-button border border-danger/30 bg-danger/10 px-3 py-2 text-sm text-danger"
+        >
+          {{ t('auth.login.error') }}
+        </p>
+
         <button
           type="button"
           class="mt-6 w-full inline-flex items-center justify-center gap-2.5 h-12 rounded-button bg-brand text-white font-medium hover:bg-brand-press transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
-          :disabled="loading"
-          @click="onGoogleSignIn"
+          :disabled="!clerk"
+          @click="onAuthClick"
         >
           <svg
-            v-if="!loading"
             class="w-5 h-5"
             viewBox="0 0 48 48"
             aria-hidden="true"
@@ -91,14 +91,8 @@ async function onGoogleSignIn(): Promise<void> {
               d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.2 4.2-4 5.6l6.3 5.3C42.5 35.6 44 30.2 44 24c0-1.3-.1-2.4-.4-3.5z"
             />
           </svg>
-          <span v-if="loading">…</span>
-          <span v-else>{{ t('auth.login.ctaGoogle') }}</span>
+          <span>{{ ctaLabel }}</span>
         </button>
-
-        <p class="mt-4 text-xs text-muted text-center">
-          T-005 stub — реальный Google OAuth подключается, когда client_id будет
-          выдан.
-        </p>
       </div>
     </div>
   </main>
