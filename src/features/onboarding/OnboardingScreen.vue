@@ -162,7 +162,7 @@ const isSubmitting = computed(() => updateProfile.isPending.value)
 
 // ────────────────── Inline validation ──────────────────
 
-function scoreError(subject: string, raw: number | null): string | null {
+function scoreError(subject: string, raw: number | null | undefined): string | null {
   if (raw == null) return null
   const max = subjectMax(subject)
   if (!Number.isInteger(raw) || raw < 0 || raw > max) {

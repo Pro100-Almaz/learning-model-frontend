@@ -147,8 +147,8 @@
     },
     {
       "path": "src/features/onboarding/OnboardingScreen.vue",
-      "accessCount": 8,
-      "lastAccessed": 1782321523673,
+      "accessCount": 9,
+      "lastAccessed": 1782364947908,
       "type": "file"
     },
     {
@@ -206,6 +206,12 @@
       "type": "file"
     },
     {
+      "path": "src/features/results/ResultsScreen.vue",
+      "accessCount": 4,
+      "lastAccessed": 1782364957321,
+      "type": "file"
+    },
+    {
       "path": "src/features/analytics/AnalyticsScreen.vue",
       "accessCount": 3,
       "lastAccessed": 1782282304739,
@@ -224,9 +230,21 @@
       "type": "file"
     },
     {
+      "path": "src/app/router.ts",
+      "accessCount": 3,
+      "lastAccessed": 1782364849848,
+      "type": "file"
+    },
+    {
+      "path": "src/shared/lib/api/client.ts",
+      "accessCount": 3,
+      "lastAccessed": 1782364850695,
+      "type": "file"
+    },
+    {
       "path": "src/shared/lib/api/index.ts",
-      "accessCount": 2,
-      "lastAccessed": 1782144444829,
+      "accessCount": 3,
+      "lastAccessed": 1782364851199,
       "type": "file"
     },
     {
@@ -266,12 +284,6 @@
       "type": "file"
     },
     {
-      "path": "src/features/results/ResultsScreen.vue",
-      "accessCount": 2,
-      "lastAccessed": 1782279189048,
-      "type": "file"
-    },
-    {
       "path": "src/features/profile/ProfileScreen.vue",
       "accessCount": 2,
       "lastAccessed": 1782279810332,
@@ -281,12 +293,6 @@
       "path": "src/features/grant/GrantScreen.vue",
       "accessCount": 2,
       "lastAccessed": 1782288583791,
-      "type": "file"
-    },
-    {
-      "path": "src/app/router.ts",
-      "accessCount": 2,
-      "lastAccessed": 1782290306309,
       "type": "file"
     },
     {
@@ -314,15 +320,15 @@
       "type": "file"
     },
     {
-      "path": "src/shared/lib/api/client.ts",
-      "accessCount": 2,
-      "lastAccessed": 1782322535787,
-      "type": "file"
-    },
-    {
       "path": "src/shared/stores/auth.ts",
       "accessCount": 2,
       "lastAccessed": 1782322573230,
+      "type": "file"
+    },
+    {
+      "path": "src/main.ts",
+      "accessCount": 2,
+      "lastAccessed": 1782364849331,
       "type": "file"
     },
     {
@@ -353,12 +359,6 @@
       "path": ".env.example",
       "accessCount": 1,
       "lastAccessed": 1782143583554,
-      "type": "file"
-    },
-    {
-      "path": "src/main.ts",
-      "accessCount": 1,
-      "lastAccessed": 1782143646903,
       "type": "file"
     },
     {

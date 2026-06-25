@@ -18,7 +18,7 @@ const correctCount = tFn<(c: number, total: number) => string>('results.correctC
 const hero = tFn<(pct: number) => string>('results.hero')
 
 const stats = computed(() => {
-  const items = review.value?.items ?? []
+  const items: AttemptReviewItem[] = review.value?.items ?? []
   const correct = items.filter((i) => i.is_correct === true).length
   const total = items.length
   const pct = total === 0 ? 0 : Math.round((correct / total) * 100)
