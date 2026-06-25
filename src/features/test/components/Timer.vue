@@ -87,7 +87,11 @@ const isExpired = computed(() => remaining.value <= 0)
       stroke-linejoin="round"
       aria-hidden="true"
     >
-      <circle cx="10" cy="11" r="6.5" />
+      <circle
+        cx="10"
+        cy="11"
+        r="6.5"
+      />
       <path d="M10 7.5V11l2 1.5" />
       <path d="M7.5 3h5" />
     </svg>

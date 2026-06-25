@@ -139,9 +139,15 @@ const primaryLabel = computed(() => {
   >
     <!-- Loading -->
     <template v-if="startAttempt.isPending.value">
-      <LoadingSkeleton :rows="1" variant="row" />
+      <LoadingSkeleton
+        :rows="1"
+        variant="row"
+      />
       <div class="mt-6">
-        <LoadingSkeleton :rows="4" variant="card" />
+        <LoadingSkeleton
+          :rows="4"
+          variant="card"
+        />
       </div>
     </template>
 

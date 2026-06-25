@@ -41,7 +41,10 @@ const dayWord = computed(() => pluralRu(props.days, 'день', 'дня', 'дн�
       <p class="text-base font-semibold text-ink tabular-nums">
         {{ days }} {{ dayWord }}
       </p>
-      <p class="text-xs" :class="activeToday ? 'text-ascent font-medium' : 'text-muted'">
+      <p
+        class="text-xs"
+        :class="activeToday ? 'text-ascent font-medium' : 'text-muted'"
+      >
         {{ activeToday ? t('profile.streakActive') : t('profile.streakInactive') }}
       </p>
     </div>

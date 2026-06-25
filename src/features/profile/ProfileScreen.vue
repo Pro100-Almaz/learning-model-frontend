@@ -30,7 +30,10 @@ async function onLogout(): Promise<void> {
         <h1 class="font-display text-3xl md:text-4xl font-bold text-ink leading-tight">
           {{ t('profile.title') }}
         </h1>
-        <p v-if="auth.user" class="mt-1 text-sm text-muted">
+        <p
+          v-if="auth.user"
+          class="mt-1 text-sm text-muted"
+        >
           {{ auth.user.email }}
         </p>
       </div>
@@ -42,7 +45,11 @@ async function onLogout(): Promise<void> {
       />
     </header>
 
-    <LoadingSkeleton v-if="isPending" :rows="2" variant="card" />
+    <LoadingSkeleton
+      v-if="isPending"
+      :rows="2"
+      variant="card"
+    />
 
     <ErrorState
       v-else-if="isError"
@@ -50,7 +57,10 @@ async function onLogout(): Promise<void> {
       @retry="refetch()"
     />
 
-    <div v-else-if="gam" class="space-y-4">
+    <div
+      v-else-if="gam"
+      class="space-y-4"
+    >
       <XPBar
         :total-xp="gam.total_xp ?? 0"
         :xp-to-next="gam.xp_to_next_level ?? 0"

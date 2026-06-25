@@ -152,21 +152,27 @@
       "type": "file"
     },
     {
+      "path": "src/features/lesson/LessonScreen.vue",
+      "accessCount": 7,
+      "lastAccessed": 1782364493489,
+      "type": "file"
+    },
+    {
       "path": "src/features/catalog/CatalogScreen.vue",
       "accessCount": 5,
       "lastAccessed": 1782279827542,
       "type": "file"
     },
     {
-      "path": "src/features/catalog/ModuleScreen.vue",
-      "accessCount": 4,
-      "lastAccessed": 1782223257723,
+      "path": "src/shared/components/EmptyState.vue",
+      "accessCount": 5,
+      "lastAccessed": 1782364518825,
       "type": "file"
     },
     {
-      "path": "src/features/lesson/LessonScreen.vue",
+      "path": "src/features/catalog/ModuleScreen.vue",
       "accessCount": 4,
-      "lastAccessed": 1782223280952,
+      "lastAccessed": 1782223257723,
       "type": "file"
     },
     {
@@ -194,9 +200,9 @@
       "type": "file"
     },
     {
-      "path": "src/shared/components/EmptyState.vue",
-      "accessCount": 3,
-      "lastAccessed": 1782223313833,
+      "path": "src/features/dashboard/DashboardScreen.vue",
+      "accessCount": 4,
+      "lastAccessed": 1782364500161,
       "type": "file"
     },
     {
@@ -281,12 +287,6 @@
       "path": "src/app/router.ts",
       "accessCount": 2,
       "lastAccessed": 1782290306309,
-      "type": "file"
-    },
-    {
-      "path": "src/features/dashboard/DashboardScreen.vue",
-      "accessCount": 2,
-      "lastAccessed": 1782291918310,
       "type": "file"
     },
     {

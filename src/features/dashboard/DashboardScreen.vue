@@ -42,10 +42,6 @@ const xpPercent = computed(() => {
   return span === 0 ? 0 : (xp / span) * 100
 })
 
-function goGrant(): void {
-  void router.push({ name: 'grant' })
-}
-
 function goMock(): void {
   void router.push({ name: 'mock' })
 }
@@ -73,7 +69,10 @@ function goMock(): void {
       class="rounded-card bg-card border border-hairline px-5 py-4 shadow-card"
     >
       <div class="flex items-center justify-between gap-3 mb-2">
-        <LevelBadge :code="gam.level_code" :label="gam.level_label" />
+        <LevelBadge
+          :code="gam.level_code"
+          :label="gam.level_label"
+        />
         <p class="text-xs text-muted tabular-nums">
           <span class="font-display font-semibold text-ink text-base">
             {{ gam.total_xp ?? 0 }}
@@ -81,7 +80,10 @@ function goMock(): void {
           XP
         </p>
       </div>
-      <ProgressBar :percent="xpPercent" tone="brand" />
+      <ProgressBar
+        :percent="xpPercent"
+        tone="brand"
+      />
     </div>
 
     <!-- Hero: Trajectory compact (if data) OR first-mock CTA (if 409) -->
@@ -107,7 +109,9 @@ function goMock(): void {
       <p class="font-display text-lg font-semibold text-ink leading-snug">
         {{ t('dashboard.firstMockCta') }}
       </p>
-      <p class="mt-2 text-sm text-muted">{{ t('dashboard.firstMockBody') }}</p>
+      <p class="mt-2 text-sm text-muted">
+        {{ t('dashboard.firstMockBody') }}
+      </p>
       <button
         type="button"
         class="mt-4 inline-flex items-center justify-center h-11 px-5 rounded-button bg-brand text-white text-sm font-semibold hover:bg-brand-press transition-colors"
@@ -129,7 +133,9 @@ function goMock(): void {
       <p class="mt-1.5 font-display text-lg font-semibold text-ink leading-snug">
         {{ continueWith(weakest.tag?.name ?? '') }}
       </p>
-      <p class="mt-2 text-sm text-muted truncate">{{ firstWeakLesson.title }}</p>
+      <p class="mt-2 text-sm text-muted truncate">
+        {{ firstWeakLesson.title }}
+      </p>
     </RouterLink>
 
     <!-- Browse all -->
@@ -138,7 +144,9 @@ function goMock(): void {
       class="block rounded-card bg-card border border-hairline px-5 py-4 hover:border-brand/40 hover:bg-surface transition-colors group"
     >
       <div class="flex items-center justify-between gap-3">
-        <p class="text-sm font-medium text-ink">{{ t('dashboard.browseAll') }}</p>
+        <p class="text-sm font-medium text-ink">
+          {{ t('dashboard.browseAll') }}
+        </p>
         <svg
           viewBox="0 0 16 16"
           class="w-4 h-4 text-muted group-hover:text-ink group-hover:translate-x-0.5 transition-all"

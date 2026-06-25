@@ -16,14 +16,20 @@ const items = [
     aria-label="Главная навигация"
   >
     <ul class="grid grid-cols-4">
-      <li v-for="item in items" :key="item.to">
+      <li
+        v-for="item in items"
+        :key="item.to"
+      >
         <RouterLink
           :to="item.to"
           class="flex flex-col items-center justify-center gap-1 min-h-[56px] py-2 text-xs text-muted transition-colors"
           active-class="text-brand"
           :exact-active-class="item.to === '/' ? 'text-brand' : ''"
         >
-          <span aria-hidden="true" class="w-6 h-6 grid place-items-center">
+          <span
+            aria-hidden="true"
+            class="w-6 h-6 grid place-items-center"
+          >
             <!-- Inline minimal icons. Replace with proper iconography later. -->
             <svg
               v-if="item.icon === 'home'"
@@ -51,7 +57,10 @@ const items = [
                 d="M4 5a2 2 0 0 1 2-2h12v18H6a2 2 0 0 1-2-2V5z"
                 stroke-linejoin="round"
               />
-              <path d="M8 7h8M8 11h8M8 15h5" stroke-linecap="round" />
+              <path
+                d="M8 7h8M8 11h8M8 15h5"
+                stroke-linecap="round"
+              />
             </svg>
             <svg
               v-else-if="item.icon === 'target'"
@@ -61,9 +70,22 @@ const items = [
               stroke-width="2"
               class="w-5 h-5"
             >
-              <circle cx="12" cy="12" r="9" />
-              <circle cx="12" cy="12" r="5" />
-              <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+              <circle
+                cx="12"
+                cy="12"
+                r="9"
+              />
+              <circle
+                cx="12"
+                cy="12"
+                r="5"
+              />
+              <circle
+                cx="12"
+                cy="12"
+                r="1.5"
+                fill="currentColor"
+              />
             </svg>
             <svg
               v-else
@@ -73,8 +95,15 @@ const items = [
               stroke-width="2"
               class="w-5 h-5"
             >
-              <circle cx="12" cy="8" r="4" />
-              <path d="M4 21a8 8 0 0 1 16 0" stroke-linecap="round" />
+              <circle
+                cx="12"
+                cy="8"
+                r="4"
+              />
+              <path
+                d="M4 21a8 8 0 0 1 16 0"
+                stroke-linecap="round"
+              />
             </svg>
           </span>
           <span>{{ item.label }}</span>

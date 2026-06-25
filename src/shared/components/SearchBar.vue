@@ -71,7 +71,10 @@ function onKeydown(e: KeyboardEvent): void {
 </script>
 
 <template>
-  <div ref="rootEl" class="relative">
+  <div
+    ref="rootEl"
+    class="relative"
+  >
     <!-- Mobile: collapsed icon button -->
     <button
       v-if="!mobileExpanded"
@@ -90,7 +93,11 @@ function onKeydown(e: KeyboardEvent): void {
         stroke-linejoin="round"
         aria-hidden="true"
       >
-        <circle cx="9" cy="9" r="6" />
+        <circle
+          cx="9"
+          cy="9"
+          r="6"
+        />
         <path d="M14 14l4 4" />
       </svg>
     </button>
@@ -123,7 +130,11 @@ function onKeydown(e: KeyboardEvent): void {
             stroke-linecap="round"
             stroke-linejoin="round"
           >
-            <circle cx="9" cy="9" r="6" />
+            <circle
+              cx="9"
+              cy="9"
+              r="6"
+            />
             <path d="M14 14l4 4" />
           </svg>
         </span>
@@ -138,7 +149,7 @@ function onKeydown(e: KeyboardEvent): void {
           class="w-full h-10 pl-9 pr-3 rounded-button bg-surface border border-hairline text-sm text-ink placeholder:text-muted focus:outline-none focus:border-brand/40 focus:bg-card transition-colors"
           @focus="onFocus"
           @keydown="onKeydown"
-        />
+        >
       </div>
       <button
         v-if="mobileExpanded"
@@ -168,7 +179,10 @@ function onKeydown(e: KeyboardEvent): void {
       class="absolute left-0 right-0 top-full mt-2 rounded-card bg-card border border-hairline shadow-elevated overflow-hidden z-50 max-h-[70vh] overflow-y-auto"
       role="listbox"
     >
-      <div v-if="results.length === 0" class="px-4 py-5 text-sm text-muted">
+      <div
+        v-if="results.length === 0"
+        class="px-4 py-5 text-sm text-muted"
+      >
         {{ t('header.searchEmpty') }}
       </div>
 
@@ -187,7 +201,9 @@ function onKeydown(e: KeyboardEvent): void {
             role="option"
             @click="onSelect(hit)"
           >
-            <p class="text-sm font-medium text-ink truncate">{{ hit.title }}</p>
+            <p class="text-sm font-medium text-ink truncate">
+              {{ hit.title }}
+            </p>
           </button>
         </section>
 
@@ -205,8 +221,12 @@ function onKeydown(e: KeyboardEvent): void {
             role="option"
             @click="onSelect(hit)"
           >
-            <p class="text-sm font-medium text-ink truncate">{{ hit.title }}</p>
-            <p class="text-xs text-muted truncate mt-0.5">{{ hit.moduleTitle }}</p>
+            <p class="text-sm font-medium text-ink truncate">
+              {{ hit.title }}
+            </p>
+            <p class="text-xs text-muted truncate mt-0.5">
+              {{ hit.moduleTitle }}
+            </p>
           </button>
         </section>
       </template>

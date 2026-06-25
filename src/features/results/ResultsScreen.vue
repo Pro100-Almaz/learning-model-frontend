@@ -52,7 +52,11 @@ function onContinue(): void {
 
 <template>
   <section class="px-4 md:px-8 py-6 md:py-10 max-w-3xl mx-auto pb-24">
-    <LoadingSkeleton v-if="isPending" :rows="3" variant="card" />
+    <LoadingSkeleton
+      v-if="isPending"
+      :rows="3"
+      variant="card"
+    />
 
     <ErrorState
       v-else-if="isError"

@@ -82,7 +82,10 @@ const statusLine = computed<string | null>(() => {
           {{ Math.round(predicted) }}
         </p>
       </div>
-      <div v-if="target != null" class="text-right">
+      <div
+        v-if="target != null"
+        class="text-right"
+      >
         <p class="text-xs uppercase tracking-wider font-semibold text-muted">
           {{ t('grant.targetLabel') }}
         </p>
@@ -106,7 +109,10 @@ const statusLine = computed<string | null>(() => {
       >
         {{ Math.round(predicted) }}
       </span>
-      <span v-if="target != null" class="tabular-nums">
+      <span
+        v-if="target != null"
+        class="tabular-nums"
+      >
         {{ t('grant.targetLabel') }} {{ target }}
       </span>
     </div>

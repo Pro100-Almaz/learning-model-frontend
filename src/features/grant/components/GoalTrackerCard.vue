@@ -30,7 +30,10 @@ defineProps<Props>()
       v-if="goal.advice || goal.weakest_tag"
       class="mt-5 rounded-card bg-surface/60 border border-hairline px-4 py-3.5"
     >
-      <p v-if="goal.advice" class="text-sm text-ink leading-relaxed">
+      <p
+        v-if="goal.advice"
+        class="text-sm text-ink leading-relaxed"
+      >
         {{ goal.advice }}
       </p>
       <p

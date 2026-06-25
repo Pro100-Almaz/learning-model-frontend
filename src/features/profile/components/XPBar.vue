@@ -24,7 +24,6 @@ const toNextText = tFn<(n: number) => string>('profile.xpToNext')
 
 // XP gain animation — when totalXp grows between fetches, briefly float a +N badge.
 const delta = ref<number | null>(null)
-let lastSeen = props.totalXp
 watch(
   () => props.totalXp,
   (next, prev) => {
@@ -32,7 +31,6 @@ watch(
       delta.value = next - prev
       window.setTimeout(() => (delta.value = null), 1600)
     }
-    lastSeen = next
   },
 )
 </script>
@@ -42,13 +40,20 @@ watch(
     class="relative rounded-card bg-card border border-hairline shadow-card px-5 py-4 overflow-hidden"
   >
     <div class="flex items-center justify-between gap-3 mb-3">
-      <LevelBadge :code="levelCode" :label="levelLabel ?? t('profile.noLevel')" />
+      <LevelBadge
+        :code="levelCode"
+        :label="levelLabel ?? t('profile.noLevel')"
+      />
       <p class="text-xs text-muted tabular-nums">
         {{ toNextText(Math.max(0, xpToNext)) }}
       </p>
     </div>
 
-    <ProgressBar :percent="percent" tone="brand" :label="t('profile.xp')" />
+    <ProgressBar
+      :percent="percent"
+      tone="brand"
+      :label="t('profile.xp')"
+    />
 
     <p class="mt-3 text-sm text-ink tabular-nums">
       <span class="font-display font-bold text-lg">{{ totalXp }}</span>

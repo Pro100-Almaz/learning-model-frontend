@@ -61,7 +61,11 @@ function startMock(): void {
       </h1>
     </header>
 
-    <LoadingSkeleton v-if="isPending" :rows="3" variant="card" />
+    <LoadingSkeleton
+      v-if="isPending"
+      :rows="3"
+      variant="card"
+    />
 
     <ErrorState
       v-else-if="isError"
@@ -79,7 +83,10 @@ function startMock(): void {
 
     <template v-else>
       <!-- Hero radar (only meaningful with ≥3 tagged datapoints) -->
-      <RadarChart v-if="hasRadarShape" :data="tags" />
+      <RadarChart
+        v-if="hasRadarShape"
+        :data="tags"
+      />
 
       <!-- Per-tag breakdown -->
       <section class="space-y-3">
@@ -111,7 +118,10 @@ function startMock(): void {
       </section>
 
       <!-- Recommendations -->
-      <section v-if="recs.length > 0" class="space-y-3">
+      <section
+        v-if="recs.length > 0"
+        class="space-y-3"
+      >
         <h2 class="font-display text-lg font-semibold text-ink">
           {{ t('analytics.recommendations') }}
         </h2>

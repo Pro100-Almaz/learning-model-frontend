@@ -61,7 +61,11 @@ function goMock(): void {
       </button>
     </header>
 
-    <LoadingSkeleton v-if="isPending" :rows="2" variant="card" />
+    <LoadingSkeleton
+      v-if="isPending"
+      :rows="2"
+      variant="card"
+    />
 
     <EmptyState
       v-else-if="isNoMock"
@@ -79,10 +83,15 @@ function goMock(): void {
 
     <template v-else-if="result">
       <!-- Equation line — math + others = predicted -->
-      <p class="text-sm text-muted tabular-nums">{{ equation }}</p>
+      <p class="text-sm text-muted tabular-nums">
+        {{ equation }}
+      </p>
 
       <!-- Hero: Goal tracker (if target is set) or plain Trajectory -->
-      <GoalTrackerCard v-if="result.goal" :goal="result.goal" />
+      <GoalTrackerCard
+        v-if="result.goal"
+        :goal="result.goal"
+      />
       <section
         v-else
         class="rounded-card bg-card border border-hairline shadow-card px-5 py-6 md:px-7 md:py-7"
@@ -104,7 +113,10 @@ function goMock(): void {
           v-if="sortedGrants.length === 0"
           :title="t('grant.notQualifying')"
         />
-        <div v-else class="space-y-3">
+        <div
+          v-else
+          class="space-y-3"
+        >
           <UniversityResultCard
             v-for="(grant, i) in sortedGrants"
             :key="`${grant.university_name}-${grant.specialty_name}-${i}`"

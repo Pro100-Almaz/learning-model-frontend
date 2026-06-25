@@ -15,6 +15,13 @@ const { data: lesson, isPending, isError, error, refetch } = useLesson(lessonId)
 
 const hasTest = computed(() => lesson.value?.micro_test_id != null)
 
+// Cast lives in <script>, not the template — the linter's
+// `vue/no-deprecated-filter` rule reads the `|` inside a TS union as a Vue 2
+// filter and errors. Keeping the union here also keeps the template tidy.
+const videoProvider = computed<'youtube' | 'vimeo'>(
+  () => (lesson.value?.video_provider ?? 'youtube') as 'youtube' | 'vimeo',
+)
+
 function goToTest(): void {
   if (lesson.value?.micro_test_id != null) {
     void router.push({ name: 'test', params: { id: lesson.value.micro_test_id } })
@@ -29,12 +36,17 @@ function goToTest(): void {
     CTA is inline.
   -->
   <section class="px-4 md:px-8 py-6 md:py-10 max-w-3xl mx-auto pb-32 md:pb-10">
-
     <!-- Loading: video skeleton first, then two text rows -->
     <template v-if="isPending">
-      <LoadingSkeleton :rows="1" variant="video" />
+      <LoadingSkeleton
+        :rows="1"
+        variant="video"
+      />
       <div class="mt-5">
-        <LoadingSkeleton :rows="2" variant="row" />
+        <LoadingSkeleton
+          :rows="2"
+          variant="row"
+        />
       </div>
     </template>
 
@@ -44,14 +56,17 @@ function goToTest(): void {
       @retry="refetch()"
     />
 
-    <article v-else-if="lesson" class="space-y-5">
+    <article
+      v-else-if="lesson"
+      class="space-y-5"
+    >
       <!--
         Video is the primary surface — no decorative chrome around it.
         The VideoPlayer component owns its 16:9 container.
       -->
       <VideoPlayer
         :url="lesson.video_url ?? ''"
-        :provider="(lesson.video_provider ?? 'youtube') as 'youtube' | 'vimeo'"
+        :provider="videoProvider"
         :title="lesson.title"
       />
 
@@ -117,6 +132,5 @@ function goToTest(): void {
         </svg>
       </button>
     </div>
-
   </section>
 </template>

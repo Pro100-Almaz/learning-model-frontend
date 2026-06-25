@@ -31,7 +31,10 @@ const { rows = 3, variant = 'card' } = defineProps<Props>()
         'aspect-video h-auto': variant === 'video',
       }"
     >
-      <div class="skeleton-shimmer h-full w-full" :class="{ 'min-h-40': variant === 'video' }" />
+      <div
+        class="skeleton-shimmer h-full w-full"
+        :class="{ 'min-h-40': variant === 'video' }"
+      />
     </div>
   </div>
 </template>

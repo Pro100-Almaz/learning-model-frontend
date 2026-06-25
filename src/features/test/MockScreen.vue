@@ -225,7 +225,11 @@ function isAnswered(qid: number | undefined): boolean {
     </header>
 
     <main class="flex-1 px-4 md:px-6 py-5 max-w-3xl w-full mx-auto pb-32 md:pb-24">
-      <LoadingSkeleton v-if="startAttempt.isPending.value && !attempt" :rows="4" variant="card" />
+      <LoadingSkeleton
+        v-if="startAttempt.isPending.value && !attempt"
+        :rows="4"
+        variant="card"
+      />
 
       <ErrorState
         v-else-if="startAttempt.isError.value && !attempt"
@@ -242,12 +246,18 @@ function isAnswered(qid: number | undefined): boolean {
         />
 
         <!-- Question nav grid -->
-        <nav class="mt-8" :aria-label="t('mock.navHeading')">
+        <nav
+          class="mt-8"
+          :aria-label="t('mock.navHeading')"
+        >
           <p class="text-xs uppercase tracking-wider font-semibold text-muted mb-2">
             {{ t('mock.navHeading') }}
           </p>
           <ul class="flex flex-wrap gap-2">
-            <li v-for="(q, i) in questions" :key="q.id ?? i">
+            <li
+              v-for="(q, i) in questions"
+              :key="q.id ?? i"
+            >
               <button
                 type="button"
                 class="w-9 h-9 rounded-button text-xs font-semibold tabular-nums transition-colors"

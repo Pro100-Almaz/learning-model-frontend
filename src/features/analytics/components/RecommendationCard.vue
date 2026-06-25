@@ -38,7 +38,10 @@ function formatDuration(sec: number | undefined): string {
           {{ Math.round(recommendation.percent ?? 0) }}% · {{ lessonsCount }} {{ lessonWord }}
         </p>
       </div>
-      <MasteryBadge :level="level" size="md" />
+      <MasteryBadge
+        :level="level"
+        size="md"
+      />
     </header>
 
     <ul>

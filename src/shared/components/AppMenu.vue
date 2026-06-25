@@ -57,7 +57,11 @@ async function onLogout(): Promise<void> {
 </script>
 
 <template>
-  <div ref="rootEl" class="relative" @keydown="onKeydown">
+  <div
+    ref="rootEl"
+    class="relative"
+    @keydown="onKeydown"
+  >
     <button
       type="button"
       class="inline-flex items-center justify-center w-10 h-10 rounded-button text-muted hover:bg-surface hover:text-ink transition-colors"

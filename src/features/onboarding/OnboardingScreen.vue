@@ -273,7 +273,11 @@ const outOfRange = tFn<(n: number) => string>('onboarding.scoreOutOfRange')
   <section
     class="min-h-dvh px-4 md:px-8 py-6 md:py-10 max-w-xl mx-auto pb-32 md:pb-10"
   >
-    <LoadingSkeleton v-if="isLoading" :rows="3" variant="card" />
+    <LoadingSkeleton
+      v-if="isLoading"
+      :rows="3"
+      variant="card"
+    />
 
     <ErrorState
       v-else-if="isError"
@@ -287,7 +291,11 @@ const outOfRange = tFn<(n: number) => string>('onboarding.scoreOutOfRange')
     />
 
     <template v-else>
-      <Stepper :step="step" :total="TOTAL_STEPS" class="mb-6" />
+      <Stepper
+        :step="step"
+        :total="TOTAL_STEPS"
+        class="mb-6"
+      />
 
       <!-- Step 1 — target uni + specialty -->
       <div
@@ -302,7 +310,9 @@ const outOfRange = tFn<(n: number) => string>('onboarding.scoreOutOfRange')
           >
             {{ t('onboarding.stepTarget') }}
           </h1>
-          <p class="mt-2 text-sm text-muted">{{ t('onboarding.stepTargetBody') }}</p>
+          <p class="mt-2 text-sm text-muted">
+            {{ t('onboarding.stepTargetBody') }}
+          </p>
         </header>
 
         <div class="space-y-3">
@@ -352,7 +362,9 @@ const outOfRange = tFn<(n: number) => string>('onboarding.scoreOutOfRange')
           >
             {{ t('onboarding.stepScores') }}
           </h1>
-          <p class="mt-2 text-sm text-muted">{{ t('onboarding.stepScoresBody') }}</p>
+          <p class="mt-2 text-sm text-muted">
+            {{ t('onboarding.stepScoresBody') }}
+          </p>
         </header>
 
         <p
@@ -367,7 +379,10 @@ const outOfRange = tFn<(n: number) => string>('onboarding.scoreOutOfRange')
           :body="t('states.errorBody')"
         />
 
-        <div v-else class="space-y-3">
+        <div
+          v-else
+          class="space-y-3"
+        >
           <label
             v-for="subject in subjects"
             :key="subject"
@@ -398,7 +413,7 @@ const outOfRange = tFn<(n: number) => string>('onboarding.scoreOutOfRange')
               "
               @input="onScoreInput(subject, $event)"
               @wheel="blockWheel"
-            />
+            >
             <p
               v-if="subjectErrors[subject] != null"
               :id="`score-err-${subject}`"
@@ -414,9 +429,23 @@ const outOfRange = tFn<(n: number) => string>('onboarding.scoreOutOfRange')
                 stroke-linejoin="round"
                 aria-hidden="true"
               >
-                <circle cx="8" cy="8" r="7" />
-                <line x1="8" y1="5" x2="8" y2="9" />
-                <line x1="8" y1="11.5" x2="8.01" y2="11.5" />
+                <circle
+                  cx="8"
+                  cy="8"
+                  r="7"
+                />
+                <line
+                  x1="8"
+                  y1="5"
+                  x2="8"
+                  y2="9"
+                />
+                <line
+                  x1="8"
+                  y1="11.5"
+                  x2="8.01"
+                  y2="11.5"
+                />
               </svg>
               {{ subjectErrors[subject] }}
             </p>
@@ -437,7 +466,9 @@ const outOfRange = tFn<(n: number) => string>('onboarding.scoreOutOfRange')
           >
             {{ t('onboarding.stepGoal') }}
           </h1>
-          <p class="mt-2 text-sm text-muted">{{ t('onboarding.stepGoalBody') }}</p>
+          <p class="mt-2 text-sm text-muted">
+            {{ t('onboarding.stepGoalBody') }}
+          </p>
         </header>
 
         <label class="block">
@@ -466,7 +497,7 @@ const outOfRange = tFn<(n: number) => string>('onboarding.scoreOutOfRange')
             "
             @input="onTargetInput"
             @wheel="blockWheel"
-          />
+          >
           <p
             v-if="targetScoreError != null"
             id="target-score-err"
@@ -482,9 +513,23 @@ const outOfRange = tFn<(n: number) => string>('onboarding.scoreOutOfRange')
               stroke-linejoin="round"
               aria-hidden="true"
             >
-              <circle cx="8" cy="8" r="7" />
-              <line x1="8" y1="5" x2="8" y2="9" />
-              <line x1="8" y1="11.5" x2="8.01" y2="11.5" />
+              <circle
+                cx="8"
+                cy="8"
+                r="7"
+              />
+              <line
+                x1="8"
+                y1="5"
+                x2="8"
+                y2="9"
+              />
+              <line
+                x1="8"
+                y1="11.5"
+                x2="8.01"
+                y2="11.5"
+              />
             </svg>
             {{ targetScoreError }}
           </p>
