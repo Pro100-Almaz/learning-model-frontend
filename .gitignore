@@ -31,8 +31,5 @@ pnpm-debug.log*
 !.vscode/settings.json
 *.swp
 
-# generated
-src/shared/lib/api/schema.ts
-
 # tests
 coverage/

@@ -31,11 +31,34 @@ The build harness — specs, tickets, and the API contract — lives **in a sibl
 ## Setup
 
 ```bash
-cp .env.example .env       # set VITE_API_BASE_URL and VITE_GOOGLE_CLIENT_ID
+cp .env.example .env       # set VITE_API_BASE_URL, VITE_CLERK_PUBLISHABLE_KEY, VITE_CLERK_JWT_TEMPLATE
 npm install
 npm run openapi:gen        # generate src/shared/lib/api/schema.ts from ../learning-model/plan/openapi.yaml
 npm run dev                # http://localhost:5173
 ```
+
+### Clerk + Backend Auth
+
+All API calls go through `src/shared/lib/api/client.ts`, which injects:
+
+```http
+Authorization: Bearer <Clerk session JWT>
+```
+
+The backend creates/links the local user from JWT claims, so configure
+`VITE_CLERK_JWT_TEMPLATE` to the name of a Clerk JWT template that includes at
+least:
+
+```json
+{
+  "email": "{{user.primary_email_address.email_address}}",
+  "first_name": "{{user.first_name}}"
+}
+```
+
+If the backend uses `CLERK_AUDIENCE`, add the matching audience in the Clerk
+template/backend config as well. Without an email claim, `/api/v1/auth/me/` may
+return 401/400 because the backend cannot create or link the local user.
 
 ## Scripts
 

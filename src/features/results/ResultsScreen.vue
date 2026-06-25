@@ -18,7 +18,7 @@ const correctCount = tFn<(c: number, total: number) => string>('results.correctC
 const hero = tFn<(pct: number) => string>('results.hero')
 
 const stats = computed(() => {
-  const items = review.value?.items ?? []
+  const items: AttemptReviewItem[] = review.value?.items ?? []
   const correct = items.filter((i) => i.is_correct === true).length
   const total = items.length
   const pct = total === 0 ? 0 : Math.round((correct / total) * 100)
@@ -52,7 +52,11 @@ function onContinue(): void {
 
 <template>
   <section class="px-4 md:px-8 py-6 md:py-10 max-w-3xl mx-auto pb-24">
-    <LoadingSkeleton v-if="isPending" :rows="3" variant="card" />
+    <LoadingSkeleton
+      v-if="isPending"
+      :rows="3"
+      variant="card"
+    />
 
     <ErrorState
       v-else-if="isError"

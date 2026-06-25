@@ -34,7 +34,10 @@ const fullscreen = computed(() =>
       </RouterView>
     </main>
 
-    <BottomNav v-if="!fullscreen" class="md:hidden" />
+    <BottomNav
+      v-if="!fullscreen"
+      class="md:hidden"
+    />
     <Toaster />
   </div>
 </template>

@@ -84,7 +84,10 @@ const option = computed(() => ({
 
     <!-- Screen-reader fallback — canvas is opaque to assistive tech -->
     <ul class="sr-only">
-      <li v-for="d in data" :key="d.tag?.id">
+      <li
+        v-for="d in data"
+        :key="d.tag?.id"
+      >
         {{ d.tag?.name }}: {{ Math.round(d.percent ?? 0) }}%
       </li>
     </ul>

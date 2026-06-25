@@ -21,7 +21,11 @@ function formatDuration(sec: number): string {
 
 <template>
   <section class="px-4 md:px-8 py-6 md:py-10 max-w-3xl mx-auto">
-    <LoadingSkeleton v-if="isPending" :rows="4" variant="row" />
+    <LoadingSkeleton
+      v-if="isPending"
+      :rows="4"
+      variant="row"
+    />
 
     <ErrorState
       v-else-if="isError"
@@ -61,8 +65,14 @@ function formatDuration(sec: number): string {
         :body="t('module.lessonsEmptyBody')"
       />
 
-      <ol v-else class="space-y-2">
-        <li v-for="lesson in mod.lessons" :key="lesson.id">
+      <ol
+        v-else
+        class="space-y-2"
+      >
+        <li
+          v-for="lesson in mod.lessons"
+          :key="lesson.id"
+        >
           <RouterLink
             :to="{ name: 'lesson', params: { id: lesson.id } }"
             class="group flex items-center gap-3 rounded-card bg-card border border-hairline px-4 py-3.5 hover:border-brand/40 hover:-translate-y-px hover:shadow-card transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
@@ -92,7 +102,10 @@ function formatDuration(sec: number): string {
                   stroke-linejoin="round"
                 />
               </svg>
-              <span v-else class="text-xs font-semibold tabular-nums">
+              <span
+                v-else
+                class="text-xs font-semibold tabular-nums"
+              >
                 {{ lesson.order }}
               </span>
             </span>
@@ -102,7 +115,10 @@ function formatDuration(sec: number): string {
               <p class="text-sm font-medium text-ink truncate">
                 {{ lesson.title }}
               </p>
-              <p v-if="lesson.completed" class="text-xs text-success mt-0.5 font-medium">
+              <p
+                v-if="lesson.completed"
+                class="text-xs text-success mt-0.5 font-medium"
+              >
                 {{ t('module.lessonCompleted') }}
               </p>
             </div>

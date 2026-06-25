@@ -118,7 +118,11 @@ watch(() => props.disabled, (d) => {
     a later sibling (e.g. the specialty SearchSelect below the university one)
     can paint over the dropdown options on some browsers / paint paths.
   -->
-  <div ref="rootEl" class="relative" :class="open ? 'z-50' : ''">
+  <div
+    ref="rootEl"
+    class="relative"
+    :class="open ? 'z-50' : ''"
+  >
     <div
       class="flex items-center gap-2 h-12 px-3.5 rounded-button bg-card border transition-colors"
       :class="[
@@ -141,7 +145,7 @@ watch(() => props.disabled, (d) => {
         @focus="openPanel"
         @input="onInput"
         @keydown="onKeydown"
-      />
+      >
       <button
         v-if="selectedOption && !disabled"
         type="button"
@@ -149,7 +153,15 @@ watch(() => props.disabled, (d) => {
         aria-label="Очистить"
         @click="clear"
       >
-        <svg viewBox="0 0 16 16" class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <svg
+          viewBox="0 0 16 16"
+          class="w-3.5 h-3.5"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          aria-hidden="true"
+        >
           <path d="M4 4l8 8M12 4l-8 8" />
         </svg>
       </button>
@@ -173,7 +185,10 @@ watch(() => props.disabled, (d) => {
       class="absolute left-0 right-0 top-full mt-2 z-50 rounded-card bg-card border border-hairline shadow-elevated overflow-hidden max-h-72 overflow-y-auto"
       role="listbox"
     >
-      <div v-if="filtered.length === 0" class="px-4 py-3 text-sm text-muted">
+      <div
+        v-if="filtered.length === 0"
+        class="px-4 py-3 text-sm text-muted"
+      >
         {{ emptyLabel ?? 'Ничего не найдено.' }}
       </div>
       <button
@@ -188,7 +203,10 @@ watch(() => props.disabled, (d) => {
         @mouseenter="activeIndex = i"
       >
         <span class="text-sm text-ink truncate">{{ opt.label }}</span>
-        <span v-if="opt.hint" class="shrink-0 text-xs text-muted tabular-nums">
+        <span
+          v-if="opt.hint"
+          class="shrink-0 text-xs text-muted tabular-nums"
+        >
           {{ opt.hint }}
         </span>
       </button>

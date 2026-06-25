@@ -1,5 +1,10 @@
 import { createRouter, createWebHistory, type RouteRecordRaw } from 'vue-router'
+import axios from 'axios'
+import { api, type components } from '@/shared/lib/api'
+import { getClerkBearerToken } from '@/shared/lib/auth/clerkToken'
 import { useAuthStore } from '@/shared/stores/auth'
+
+type AuthUser = components['schemas']['User']
 
 const routes: RouteRecordRaw[] = [
   {
@@ -105,21 +110,72 @@ export const router = createRouter({
   },
 })
 
-router.beforeEach((to) => {
+async function hasClerkSession(): Promise<boolean> {
+  const token = await getClerkBearerToken()
+  return Boolean(token)
+}
+
+async function ensureBackendUser(): Promise<boolean> {
+  const auth = useAuthStore()
+
+  if (auth.user) return true
+
+  try {
+    const { data } = await api.get<AuthUser>('/auth/me/')
+    auth.setUser(data)
+    return true
+  } catch (error) {
+    if (import.meta.env.DEV) {
+      if (axios.isAxiosError(error)) {
+        console.warn('[auth] /auth/me/ failed', {
+          status: error.response?.status,
+          detail: error.response?.data,
+          message: error.message,
+        })
+      } else {
+        console.warn('[auth] /auth/me/ failed', error)
+      }
+    }
+    auth.logout()
+    return false
+  }
+}
+
+router.beforeEach(async (to) => {
   const auth = useAuthStore()
   const isPublic = to.matched.some((m) => m.meta.public)
   const requiresAuth = to.matched.some((m) => m.meta.requiresAuth)
   const allowUnonboarded = to.matched.some((m) => m.meta.allowUnonboarded)
+  const isSignedIn = await hasClerkSession()
 
-  if (requiresAuth && !auth.isAuthed) {
+  if (requiresAuth && !isSignedIn) {
     return { name: 'login', query: to.fullPath !== '/' ? { next: to.fullPath } : undefined }
   }
 
-  if (auth.isAuthed && isPublic) {
+  if (!isSignedIn) {
+    auth.logout()
+    return true
+  }
+
+  if (requiresAuth || isPublic) {
+    const hasUser = await ensureBackendUser()
+    if (!hasUser) {
+      if (isPublic) return true
+      return {
+        name: 'login',
+        query: {
+          next: to.fullPath !== '/' ? to.fullPath : undefined,
+          auth_error: 'backend',
+        },
+      }
+    }
+  }
+
+  if (isPublic) {
     return auth.isOnboarded ? { name: 'dashboard' } : { name: 'onboarding' }
   }
 
-  if (requiresAuth && auth.isAuthed && !auth.isOnboarded && !allowUnonboarded) {
+  if (requiresAuth && !auth.isOnboarded && !allowUnonboarded) {
     return { name: 'onboarding' }
   }
 

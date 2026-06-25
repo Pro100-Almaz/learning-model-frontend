@@ -32,7 +32,9 @@ const marginLabel = computed(() => {
       <p class="text-sm font-medium text-ink truncate">
         {{ specialtyName }}
       </p>
-      <p class="text-xs text-muted truncate mt-0.5">{{ universityName }}</p>
+      <p class="text-xs text-muted truncate mt-0.5">
+        {{ universityName }}
+      </p>
       <p class="text-xs text-muted mt-1.5 tabular-nums">
         Проходной балл: {{ minScore }}
       </p>

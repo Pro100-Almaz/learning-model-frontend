@@ -56,7 +56,7 @@ function stateFor(optionId: number): OptionState {
       alt=""
       class="max-w-full rounded-card border border-hairline"
       loading="lazy"
-    />
+    >
 
     <div class="space-y-2.5">
       <OptionButton

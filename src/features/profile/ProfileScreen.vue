@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useRouter } from 'vue-router'
+import { useAuth } from '@clerk/vue'
 import { useGamification } from './composables/useGamification'
 import XPBar from './components/XPBar.vue'
 import StreakFlame from './components/StreakFlame.vue'
@@ -11,12 +12,14 @@ import { t } from '@/shared/lib/i18n'
 
 const router = useRouter()
 const auth = useAuthStore()
+const { signOut } = useAuth()
 
 const { data: gam, isPending, isError, error, refetch } = useGamification()
 
-function onLogout(): void {
+async function onLogout(): Promise<void> {
   auth.logout()
-  void router.replace({ name: 'login' })
+  await signOut.value({ redirectUrl: '/login' })
+  await router.replace({ name: 'login' })
 }
 </script>
 
@@ -27,7 +30,10 @@ function onLogout(): void {
         <h1 class="font-display text-3xl md:text-4xl font-bold text-ink leading-tight">
           {{ t('profile.title') }}
         </h1>
-        <p v-if="auth.user" class="mt-1 text-sm text-muted">
+        <p
+          v-if="auth.user"
+          class="mt-1 text-sm text-muted"
+        >
           {{ auth.user.email }}
         </p>
       </div>
@@ -39,7 +45,11 @@ function onLogout(): void {
       />
     </header>
 
-    <LoadingSkeleton v-if="isPending" :rows="2" variant="card" />
+    <LoadingSkeleton
+      v-if="isPending"
+      :rows="2"
+      variant="card"
+    />
 
     <ErrorState
       v-else-if="isError"
@@ -47,7 +57,10 @@ function onLogout(): void {
       @retry="refetch()"
     />
 
-    <div v-else-if="gam" class="space-y-4">
+    <div
+      v-else-if="gam"
+      class="space-y-4"
+    >
       <XPBar
         :total-xp="gam.total_xp ?? 0"
         :xp-to-next="gam.xp_to_next_level ?? 0"

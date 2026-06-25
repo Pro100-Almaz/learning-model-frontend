@@ -44,7 +44,12 @@ const isClickable = (): boolean => props.state === 'idle' || props.state === 'se
           class="w-2.5 h-2.5 text-white"
           viewBox="0 0 8 8"
         >
-          <circle cx="4" cy="4" r="3" fill="currentColor" />
+          <circle
+            cx="4"
+            cy="4"
+            r="3"
+            fill="currentColor"
+          />
         </svg>
         <svg
           v-else-if="state === 'correct'"

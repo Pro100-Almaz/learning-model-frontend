@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { t } from '@/shared/lib/i18n'
-
 interface Props {
   title: string
   body?: string
@@ -36,8 +34,13 @@ const emit = defineEmits<{
       </svg>
     </div>
 
-    <p class="font-display text-base font-semibold text-ink">{{ title }}</p>
-    <p v-if="body" class="mt-2 text-sm text-muted leading-relaxed max-w-xs mx-auto">
+    <p class="font-display text-base font-semibold text-ink">
+      {{ title }}
+    </p>
+    <p
+      v-if="body"
+      class="mt-2 text-sm text-muted leading-relaxed max-w-xs mx-auto"
+    >
       {{ body }}
     </p>
     <button
