@@ -94,6 +94,18 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/features/profile/ProfileScreen.vue'),
         meta: { requiresAuth: true },
       },
+      {
+        path: 'assessments',
+        name: 'assessments',
+        component: () => import('@/features/assessments/Assessments.vue'),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: 'generation/jobs/:jobId',
+        name: 'generation_job',
+        component: () => import('@/features/assessments/GenerationJobScreen.vue'),
+        meta: { requiresAuth: true },
+      },
     ],
   },
   {

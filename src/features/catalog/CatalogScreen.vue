@@ -25,17 +25,16 @@ const pluralLessons = (n: number): string => pluralRu(n, 'урок', 'урока
       </h1>
     </header>
 
-    <LoadingSkeleton
-      v-if="isPending"
-      :rows="3"
-      variant="card"
-    />
+    <RouterLink
+      :to="{ name: 'assessments', params: { topic: 'MATH' } }"
+      class="block rounded-card bg-card border border-hairline px-5 py-5 shadow-card hover:border-brand/40 hover:-translate-y-0.5 hover:shadow-elevated transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+    >
+      MATH
+    </RouterLink>
 
-    <ErrorState
-      v-else-if="isError"
-      :body="error?.message"
-      @retry="refetch()"
-    />
+    <LoadingSkeleton v-if="isPending" :rows="3" variant="card" />
+
+    <ErrorState v-else-if="isError" :body="error?.message" @retry="refetch()" />
 
     <EmptyState
       v-else-if="!modules || modules.length === 0"
@@ -43,14 +42,8 @@ const pluralLessons = (n: number): string => pluralRu(n, 'урок', 'урока
       :body="t('catalog.emptyBody')"
     />
 
-    <ul
-      v-else
-      class="grid grid-cols-1 md:grid-cols-2 gap-3"
-    >
-      <li
-        v-for="m in modules"
-        :key="m.id"
-      >
+    <ul v-else class="grid grid-cols-1 md:grid-cols-2 gap-3">
+      <li v-for="m in modules" :key="m.id">
         <RouterLink
           :to="{ name: 'module', params: { moduleId: m.id } }"
           class="group block rounded-card bg-card border border-hairline px-5 py-4 shadow-card hover:border-brand/40 hover:-translate-y-0.5 hover:shadow-elevated transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
