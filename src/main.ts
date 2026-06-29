@@ -25,6 +25,7 @@ const queryClient = new QueryClient({
 })
 
 const app = createApp(App)
+app.config.devtools = true
 
 warnIfClerkJwtTemplateMissing()
 

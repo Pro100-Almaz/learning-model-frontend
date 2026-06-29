@@ -3,11 +3,13 @@ import { fileURLToPath, URL } from 'node:url'
 import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
+import VueDevTools from 'vite-plugin-vue-devtools'
 
 export default defineConfig({
   plugins: [
     vue(),
     tailwindcss(),
+    VueDevTools(),
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg'],
