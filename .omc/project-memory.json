@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastScanned": 1782319622687,
+  "lastScanned": 1784206499446,
   "projectRoot": "/Users/almazamanzholuly/Documents/qadam/learning-model-frontend",
   "techStack": {
     "languages": [
@@ -42,8 +42,8 @@
     "runtime": null
   },
   "build": {
-    "buildCommand": "npm run build",
-    "testCommand": "npm test",
+    "buildCommand": "npm run build 2>&1 | tail -20",
+    "testCommand": "npm run typecheck 2>&1 | tail -4 && echo \"=== LINT ===\" && npm run lint 2>&1 | tail -4 && echo \"=== TESTS ===\" && npm test 2>&1 | tail -15",
     "lintCommand": "npm run lint",
     "devCommand": "npm run dev",
     "scripts": {
@@ -72,7 +72,10 @@
       "public",
       "src"
     ],
-    "gitBranches": null
+    "gitBranches": {
+      "defaultBranch": "main",
+      "branchingStrategy": null
+    }
   },
   "customNotes": [],
   "directoryMap": {
@@ -80,7 +83,7 @@
       "path": "dist",
       "purpose": "Distribution/build output",
       "fileCount": 6,
-      "lastAccessed": 1782319622681,
+      "lastAccessed": 1784206499438,
       "keyFiles": [
         "favicon.svg",
         "index.html",
@@ -93,7 +96,7 @@
       "path": "public",
       "purpose": "Public files",
       "fileCount": 1,
-      "lastAccessed": 1782319622683,
+      "lastAccessed": 1784206499441,
       "keyFiles": [
         "favicon.svg"
       ]
@@ -102,7 +105,7 @@
       "path": "src",
       "purpose": "Source code",
       "fileCount": 2,
-      "lastAccessed": 1782319622683,
+      "lastAccessed": 1784206499441,
       "keyFiles": [
         "App.vue",
         "main.ts"
@@ -111,19 +114,19 @@
     "dist/assets": {
       "path": "dist/assets",
       "purpose": "Static assets",
-      "fileCount": 84,
-      "lastAccessed": 1782319622684,
+      "fileCount": 85,
+      "lastAccessed": 1784206499442,
       "keyFiles": [
-        "AnalyticsScreen-DMiJJ-96.js",
-        "AppShell-DrMq0p8h.js",
-        "CatalogScreen-vk9N7NHp.js"
+        "AnalyticsScreen-CPraSDvo.js",
+        "AppShell-CFQR5U7d.js",
+        "CatalogScreen-Dblv-Y5l.js"
       ]
     },
     "src/app": {
       "path": "src/app",
       "purpose": "Application code",
       "fileCount": 1,
-      "lastAccessed": 1782319622685,
+      "lastAccessed": 1784206499443,
       "keyFiles": [
         "router.ts"
       ]
@@ -132,7 +135,7 @@
       "path": "src/test",
       "purpose": "Test files",
       "fileCount": 1,
-      "lastAccessed": 1782319622685,
+      "lastAccessed": 1784206499443,
       "keyFiles": [
         "setup.ts"
       ]
@@ -141,8 +144,14 @@
   "hotPaths": [
     {
       "path": "src/shared/lib/i18n/ru.ts",
-      "accessCount": 18,
-      "lastAccessed": 1782321439108,
+      "accessCount": 20,
+      "lastAccessed": 1784207397984,
+      "type": "file"
+    },
+    {
+      "path": "src/features/dashboard/DashboardScreen.vue",
+      "accessCount": 12,
+      "lastAccessed": 1784207711028,
       "type": "file"
     },
     {
@@ -200,33 +209,27 @@
       "type": "file"
     },
     {
-      "path": "src/features/dashboard/DashboardScreen.vue",
-      "accessCount": 4,
-      "lastAccessed": 1782364500161,
-      "type": "file"
-    },
-    {
       "path": "src/features/results/ResultsScreen.vue",
       "accessCount": 4,
       "lastAccessed": 1782364957321,
       "type": "file"
     },
     {
-      "path": "src/features/analytics/AnalyticsScreen.vue",
-      "accessCount": 3,
-      "lastAccessed": 1782282304739,
+      "path": "src/styles/main.css",
+      "accessCount": 4,
+      "lastAccessed": 1784207068859,
       "type": "file"
     },
     {
       "path": "src/shared/components/AppShell.vue",
-      "accessCount": 3,
-      "lastAccessed": 1782290312160,
+      "accessCount": 4,
+      "lastAccessed": 1784207093712,
       "type": "file"
     },
     {
-      "path": "src/styles/main.css",
+      "path": "src/features/analytics/AnalyticsScreen.vue",
       "accessCount": 3,
-      "lastAccessed": 1782320054689,
+      "lastAccessed": 1782282304739,
       "type": "file"
     },
     {
@@ -338,6 +341,12 @@
       "type": "file"
     },
     {
+      "path": "src/shared/components/BottomNav.vue",
+      "accessCount": 2,
+      "lastAccessed": 1784207094932,
+      "type": "file"
+    },
+    {
       "path": "tsconfig.json",
       "accessCount": 1,
       "lastAccessed": 1782143582102,
@@ -377,12 +386,6 @@
       "path": "src/shared/stores/ui.ts",
       "accessCount": 1,
       "lastAccessed": 1782143689344,
-      "type": "file"
-    },
-    {
-      "path": "src/shared/components/BottomNav.vue",
-      "accessCount": 1,
-      "lastAccessed": 1782143763625,
       "type": "file"
     },
     {
