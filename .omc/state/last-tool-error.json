@@ -1,7 +1,0 @@
-{
-  "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"curl -sf -o /dev/null -w \\\"with-slash:%{http_code}\\\\n\\\" http://127.0.0.1:4010/profile/onboarding-options/ ; curl -sf -o /dev/null -w \\\"no-slash:%{http_code}\\\\n\\\" http://127.0.0.1:4010/prof...",
-  "error": "Exit code 22\nwith-slash:401\nno-slash:404",
-  "timestamp": "2026-06-24T17:35:35.595Z",
-  "retry_count": 1
-}
