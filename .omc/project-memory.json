@@ -332,6 +332,12 @@
       "type": "file"
     },
     {
+      "path": "src/features/auth/LoginScreen.vue",
+      "accessCount": 2,
+      "lastAccessed": 1782384733953,
+      "type": "file"
+    },
+    {
       "path": "tsconfig.json",
       "accessCount": 1,
       "lastAccessed": 1782143582102,
@@ -389,12 +395,6 @@
       "path": "src/shared/components/TicketStub.vue",
       "accessCount": 1,
       "lastAccessed": 1782143781856,
-      "type": "file"
-    },
-    {
-      "path": "src/features/auth/LoginScreen.vue",
-      "accessCount": 1,
-      "lastAccessed": 1782143804554,
       "type": "file"
     },
     {
